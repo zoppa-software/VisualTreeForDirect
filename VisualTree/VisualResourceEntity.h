@@ -9,8 +9,8 @@
 using namespace System;
 using namespace System::Drawing;
 
-namespace VisualTree {
-
+namespace VisualTree
+{
     ref class VisualResource;
 
     /// <summary>リソースクラス・描画実体。</summary>

@@ -99,6 +99,21 @@
     <ClInclude Include="VisualResourceOfLineGradientBrush.h">
       <Filter>Resource\Brush</Filter>
     </ClInclude>
+    <ClInclude Include="DWriteFontWeight.h">
+      <Filter>Resource\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="DWriteFontStyle.h">
+      <Filter>Resource\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="DWriteFontStretch.h">
+      <Filter>Resource\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="VisualResourceOfStrokeStyle.h">
+      <Filter>Resource\Brush</Filter>
+    </ClInclude>
+    <ClInclude Include="AntialiasMode.h">
+      <Filter>Render</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp">

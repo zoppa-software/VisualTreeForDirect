@@ -128,8 +128,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AntialiasMode.h" />
     <ClInclude Include="CapStyle.h" />
     <ClInclude Include="DashStyle.h" />
+    <ClInclude Include="DWriteFontStretch.h" />
+    <ClInclude Include="DWriteFontStyle.h" />
+    <ClInclude Include="DWriteFontWeight.h" />
     <ClInclude Include="Ellipse.h" />
     <ClInclude Include="ExtendModeParameter.h" />
     <ClInclude Include="GammaParameter.h" />
@@ -143,6 +147,7 @@
     <ClInclude Include="VisualResourceOfPathGeometry.h" />
     <ClInclude Include="VisualResourceOfRadialGradientBrush.h" />
     <ClInclude Include="VisualResourceOfSolidColorBrush.h" />
+    <ClInclude Include="VisualResourceOfStrokeStyle.h" />
     <ClInclude Include="VisualResourceOfTextFormat.h" />
     <ClInclude Include="VisualResources.h" />
     <ClInclude Include="VisualTeeControl.h" />

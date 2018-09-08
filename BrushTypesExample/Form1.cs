@@ -23,6 +23,9 @@ namespace GeometriesExample
             // フォント設定
             var format = this.mainControl.CreateTextFormat("text format");
             format.FontFamilyName = "Verdana";
+            format.FontWeight = DWriteFontWeight.DWRITE_FONT_WEIGHT_BOLD;
+            format.FontStyle = DWriteFontStyle.DWRITE_FONT_STYLE_NORMAL;
+            format.FontSize = 10.5f;
 
             // 黒ブラシ
             this.mainControl.CreateSolidColorBrush("brush", Color.Black);
@@ -56,11 +59,6 @@ namespace GeometriesExample
 
         private void mainControl_VisualRenderEvent(object sender, VisualTree.VisualRenderEventArgs e)
         {
-            //m_pRenderTarget->BeginDraw();
-            //MARGINS ins = { 0, 0, 200, 200 };
-            //DwmExtendFrameIntoClientArea(m_hwnd, &ins);
-            //m_pRenderTarget->SetTransform(D2D1::Matrix3x2F::Identity());
-
             // ブラシで塗りつぶす矩形の形状を定義する
             var rcBrushRect = new RectangleF(5, 0, 150, 150);
 
@@ -73,13 +71,13 @@ namespace GeometriesExample
             // 単色ブラシ
             e.RenderTarget.SetTransform(5, 5);
             e.RenderTarget.FillRectangle(rcBrushRect, e.Resources["yellow brush"]);
-            e.RenderTarget.DrawRectangle(rcBrushRect, e.Resources["brush"]);
+            e.RenderTarget.DrawRectangle(rcBrushRect, e.Resources["brush"], 1);
             e.RenderTarget.DrawText("ID2D1SolidColorBrush", e.Resources["text format"], rcTextRect, e.Resources["brush"]);
 
             // ライングラデーションブラシ
             e.RenderTarget.SetTransform(200, 5);
             e.RenderTarget.FillRectangle(rcBrushRect, e.Resources["line"]);
-            e.RenderTarget.DrawRectangle(rcBrushRect, e.Resources["brush"]);
+            e.RenderTarget.DrawRectangle(rcBrushRect, e.Resources["brush"], 1);
             e.RenderTarget.DrawText("ID2D1LinearGradientBrush", e.Resources["text format"], rcTextRect, e.Resources["brush"]);
 
             // 放射グラデーションブラシ

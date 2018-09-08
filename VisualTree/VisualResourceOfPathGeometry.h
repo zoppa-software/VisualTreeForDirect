@@ -10,8 +10,8 @@
 using namespace System;
 using namespace System::Drawing;
 
-namespace VisualTree {
-
+namespace VisualTree
+{
 	public ref class VisualResourceOfPathGeometry
 		: public VisualResource
 	{

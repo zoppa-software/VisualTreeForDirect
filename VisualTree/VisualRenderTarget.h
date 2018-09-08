@@ -5,6 +5,7 @@
 #include <dwrite.h>
 #include <wincodec.h>
 #include "Ellipse.h"
+#include "AntialiasMode.h"
 #include "VisualResources.h"
 #include "VisualResourceEntity.h"
 //#include "VisualResourceOfSolidColorBrush.h"
@@ -47,6 +48,10 @@ namespace VisualTree
         /// <param name="offsetY">Y移動量。</param>
         void SetTransform(int offsetX, int offsetY);
 
+        void PushAxisAlignedClip(RectangleF rect, AntialiasMode mode);
+
+        void PopAxisAlignedClip();
+
         //-----------------------------------------------------------------------------
         // 背景色クリア
         //-----------------------------------------------------------------------------
@@ -73,10 +78,24 @@ namespace VisualTree
         void DrawEllipse(RectangleF rect, VisualResourceEntity ^ brush, float strokeWidth);
 
         /// <summary>指定された寸法とストロークで楕円の輪郭を描画します。</summary>
+        /// <param name="rect">描画する楕円の位置と半径。</param>
+        /// <param name="brush">楕円の輪郭の描画に使用するブラシ。</param>
+        /// <param name="strokeWidth">楕円のストロークの太さ。</param>
+        /// <param name="strokeStyle">ストロークスタイル。</param>
+        void DrawEllipse(RectangleF rect, VisualResourceEntity ^ brush, float strokeWidth, VisualResourceEntity ^ strokeStyle);
+
+        /// <summary>指定された寸法とストロークで楕円の輪郭を描画します。</summary>
         /// <param name="ellipse">楕円領域。</param>
         /// <param name="brush">楕円の輪郭の描画に使用するブラシ。</param>
         /// <param name="strokeWidth">楕円のストロークの太さ。</param>
         void DrawEllipse(Ellipse ellipse, VisualResourceEntity ^ brush, float strokeWidth);
+
+        /// <summary>指定された寸法とストロークで楕円の輪郭を描画します。</summary>
+        /// <param name="ellipse">楕円領域。</param>
+        /// <param name="brush">楕円の輪郭の描画に使用するブラシ。</param>
+        /// <param name="strokeWidth">楕円のストロークの太さ。</param>
+        /// <param name="strokeStyle">ストロークスタイル。</param>
+        void DrawEllipse(Ellipse ellipse, VisualResourceEntity ^ brush, float strokeWidth, VisualResourceEntity ^ strokeStyle);
 
         /// <summary>指定されたジオメトリの輪郭を描画します。</summary>
         /// <param name="geometry">描画ジオメトリ。</param>
@@ -84,7 +103,15 @@ namespace VisualTree
         /// <param name="strokeWidth">ストロークの太さ。</param>
         void DrawGeometry(VisualResourceEntity ^ geometry, VisualResourceEntity ^ brush, float strokeWidth);
 
+        /// <summary>指定されたジオメトリの輪郭を描画します。</summary>
+        /// <param name="geometry">描画ジオメトリ。</param>
+        /// <param name="brush">ストロークを塗りつぶすブラシ。</param>
+        /// <param name="strokeWidth">ストロークの太さ。</param>
+        /// <param name="strokeStyle">ストロークスタイル。</param>
+        void DrawGeometry(VisualResourceEntity ^ geometry, VisualResourceEntity ^ brush, float strokeWidth, VisualResourceEntity ^ strokeStyle);
+
         //this->renderTarget->DrawGlyphRun;
+
         /// <summary>指定されたストローク スタイルを使用して、指定された点の間に線を描画します。</summary>
         /// <param name="startPt">線の始点。</param>
         /// <param name="endPt">線の終点。</param>
@@ -92,16 +119,25 @@ namespace VisualTree
         /// <param name="strokeWidth">線のストロークの太さ。</param>
         void DrawLine(PointF startPt, PointF endPt, VisualResourceEntity ^ brush, float strokeWidth);
 
-        /// <summary>矩形を描画します。</summary>
-        /// <param name="rectangle">対象の矩形。</param>
-        /// <param name="brush">線のブラシ。</param>
-        void DrawRectangle(RectangleF rectangle, VisualResourceEntity ^ brush);
+        /// <summary>指定されたストローク スタイルを使用して、指定された点の間に線を描画します。</summary>
+        /// <param name="startPt">線の始点。</param>
+        /// <param name="endPt">線の終点。</param>
+        /// <param name="brush">線の描画に使用するブラシ。</param>
+        /// <param name="strokeWidth">線のストロークの太さ。</param>
+        void DrawLine(PointF startPt, PointF endPt, VisualResourceEntity ^ brush, float strokeWidth, VisualResourceEntity ^ strokeStyle);
 
         /// <summary>矩形を描画します。</summary>
         /// <param name="rectangle">対象の矩形。</param>
         /// <param name="brush">線のブラシ。</param>
         /// <param name="strokeWidth">線のストロークの太さ。</param>
         void DrawRectangle(RectangleF rectangle, VisualResourceEntity ^ brush, float strokeWidth);
+
+        /// <summary>矩形を描画します。</summary>
+        /// <param name="rectangle">対象の矩形。</param>
+        /// <param name="brush">線のブラシ。</param>
+        /// <param name="strokeWidth">線のストロークの太さ。</param>
+        /// <param name="strokeStyle">ストロークスタイル。</param>
+        void DrawRectangle(RectangleF rectangle, VisualResourceEntity ^ brush, float strokeWidth, VisualResourceEntity ^ strokeStyle);
 
         /// <summary>書式情報を使用して、指定された文字列を描画します。</summary>
         /// <param name="text">描画文字列。</param>
@@ -122,6 +158,12 @@ namespace VisualTree
         /// <param name="geometry">描画ジオメトリ。</param>
         /// <param name="brush">ジオメトリ内部を塗りつぶすブラシ。</param>
         void FillGeometry(VisualResourceEntity ^ geometry, VisualResourceEntity ^ brush);
+
+        /// <summary>指定されたジオメトリの内部を描画します。</summary>
+        /// <param name="geometry">描画ジオメトリ。</param>
+        /// <param name="brush">ジオメトリ内部を塗りつぶすブラシ。</param>
+        /// <param name="opacitybrush">ジオメトリに適用する不透明度マスク。</param>
+        void FillGeometry(VisualResourceEntity ^ geometry, VisualResourceEntity ^ brush, VisualResourceEntity ^ opacitybrush);
 
         //this->renderTarget->FillMesh;
         //this->renderTarget->FillOpacityMask;

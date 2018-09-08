@@ -24,7 +24,7 @@ namespace VisualTree
         DASH_STYLE_CUSTOM = 5,
 
         /// <summary>ñ≥å¯ílÅB</summary>
-        DASH_STYLE_FORCE_DWORD = 0xffffffff
+        DASH_STYLE_FORCE_DWORD = -1
     };
 }
 

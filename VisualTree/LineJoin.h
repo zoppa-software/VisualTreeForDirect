@@ -3,7 +3,7 @@
 namespace VisualTree
 {
     /// <summary>コーナー処理。</summary>
-    public enum class D2D1_LINE_JOIN
+    public enum class LineJoin
     {
         /// <summary>通常コーナー。</summary>
         LINE_JOIN_MITER = 0,
@@ -18,6 +18,6 @@ namespace VisualTree
         LINE_JOIN_MITER_OR_BEVEL = 3,
 
         /// <summary>無効値。</summary>
-        LINE_JOIN_FORCE_DWORD = 0xffffffff
+        LINE_JOIN_FORCE_DWORD = -1
     };
 }

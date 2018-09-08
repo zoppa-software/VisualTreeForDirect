@@ -17,6 +17,20 @@ namespace VisualTree
         this->renderTarget->SetTransform(D2D1::Matrix3x2F::Translation(D2D1::SizeF((float)offsetX, (float)offsetY)));
     }
 
+    void VisualRenderTarget::PushAxisAlignedClip(RectangleF rect, AntialiasMode mode)
+    {
+        D2D1_RECT_F rec = D2D1::RectF((float)rect.Left,
+                                      (float)rect.Top,
+                                      (float)rect.Right,
+                                      (float)rect.Bottom);
+        this->renderTarget->PushAxisAlignedClip(rec, (D2D1_ANTIALIAS_MODE)mode);
+    }
+
+    void VisualRenderTarget::PopAxisAlignedClip()
+    {
+        this->renderTarget->PopAxisAlignedClip();
+    }
+
     //-----------------------------------------------------------------------------
     // ”wŒiFƒNƒŠƒA
     //-----------------------------------------------------------------------------
@@ -44,8 +58,18 @@ namespace VisualTree
     void VisualRenderTarget::DrawEllipse(RectangleF rect, VisualResourceEntity ^ brush, float strokeWidth)
     {
         if (brush != nullptr) {
-            D2D1_ELLIPSE ellipse = D2D1::Ellipse(D2D1::Point2F(rect.Left, rect.Top), rect.Width, rect.Height);
+            D2D1_ELLIPSE ellipse = D2D1::Ellipse(D2D1::Point2F(rect.Left, rect.Top),
+                                                 rect.Width, rect.Height);
             this->renderTarget->DrawEllipse(ellipse, (ID2D1Brush*)brush->GetInstance(), strokeWidth);
+        }
+    }
+
+    void VisualRenderTarget::DrawEllipse(RectangleF rect, VisualResourceEntity ^ brush, float strokeWidth, VisualResourceEntity ^ strokeStyle)
+    {
+        if (brush != nullptr) {
+            D2D1_ELLIPSE ellipse = D2D1::Ellipse(D2D1::Point2F(rect.Left, rect.Top),
+                                                 rect.Width, rect.Height);
+            this->renderTarget->DrawEllipse(ellipse, (ID2D1Brush*)brush->GetInstance(), strokeWidth, (ID2D1StrokeStyle*)strokeStyle->GetInstance());
         }
     }
 
@@ -55,7 +79,17 @@ namespace VisualTree
             D2D1_ELLIPSE ellp = D2D1::Ellipse(D2D1::Point2F(ellipse.CenterPoint.X, ellipse.CenterPoint.Y),
                                               (float)ellipse.RadiusX,
                                               (float)ellipse.RadiusY);
-            this->renderTarget->DrawEllipse(ellp, (ID2D1Brush*)brush->GetInstance());
+            this->renderTarget->DrawEllipse(ellp, (ID2D1Brush*)brush->GetInstance(), strokeWidth);
+        }
+    }
+
+    void VisualRenderTarget::DrawEllipse(Ellipse ellipse, VisualResourceEntity ^ brush, float strokeWidth, VisualResourceEntity ^ strokeStyle)
+    {
+        if (brush != nullptr) {
+            D2D1_ELLIPSE ellp = D2D1::Ellipse(D2D1::Point2F(ellipse.CenterPoint.X, ellipse.CenterPoint.Y),
+                                              (float)ellipse.RadiusX,
+                                              (float)ellipse.RadiusY);
+            this->renderTarget->DrawEllipse(ellp, (ID2D1Brush*)brush->GetInstance(), strokeWidth, (ID2D1StrokeStyle*)strokeStyle->GetInstance());
         }
     }
 
@@ -65,7 +99,15 @@ namespace VisualTree
             this->renderTarget->DrawGeometry((ID2D1Geometry*)geometry->GetInstance(), (ID2D1Brush*)brush->GetInstance(), strokeWidth);
         }
     }
+
+    void VisualRenderTarget::DrawGeometry(VisualResourceEntity ^ geometry, VisualResourceEntity ^ brush, float strokeWidth, VisualResourceEntity ^ strokeStyle)
+    {
+        if (geometry != nullptr && brush != nullptr) {
+            this->renderTarget->DrawGeometry((ID2D1Geometry*)geometry->GetInstance(), (ID2D1Brush*)brush->GetInstance(), strokeWidth, (ID2D1StrokeStyle*)strokeStyle->GetInstance());
+        }
+    }
         //this->renderTarget->DrawGlyphRun;
+
     void VisualRenderTarget::DrawLine(PointF startPt, PointF endPt, VisualResourceEntity ^ brush, float strokeWidth)
     {
         if (brush != nullptr) {
@@ -75,18 +117,16 @@ namespace VisualTree
         }
     }
 
-        //this->renderTarget->DrawRectangle;
-    void VisualRenderTarget::DrawRectangle(RectangleF rectangle, VisualResourceEntity ^ brush)
+    void VisualRenderTarget::DrawLine(PointF startPt, PointF endPt, VisualResourceEntity ^ brush, float strokeWidth, VisualResourceEntity ^ strokeStyle)
     {
         if (brush != nullptr) {
-            D2D1_RECT_F rec = D2D1::RectF((float)rectangle.Left,
-                                          (float)rectangle.Top,
-                                          (float)rectangle.Right,
-                                          (float)rectangle.Bottom);
-            this->renderTarget->DrawRectangle(rec, (ID2D1Brush*)brush->GetInstance());
+            D2D1_POINT_2F pos1 = D2D1::Point2F(startPt.X, startPt.Y);
+            D2D1_POINT_2F pos2 = D2D1::Point2F(endPt.X, endPt.Y);
+            this->renderTarget->DrawLine(pos1, pos2, (ID2D1Brush*)brush->GetInstance(), strokeWidth, (ID2D1StrokeStyle*)strokeStyle->GetInstance());
         }
     }
 
+        //this->renderTarget->DrawRectangle;
     void VisualRenderTarget::DrawRectangle(RectangleF rectangle, VisualResourceEntity ^ brush, float strokeWidth)
     {
         if (brush != nullptr) {
@@ -95,6 +135,17 @@ namespace VisualTree
                                           (float)rectangle.Right,
                                           (float)rectangle.Bottom);
             this->renderTarget->DrawRectangle(rec, (ID2D1Brush*)brush->GetInstance(), strokeWidth);
+        }
+    }
+
+    void VisualRenderTarget::DrawRectangle(RectangleF rectangle, VisualResourceEntity ^ brush, float strokeWidth, VisualResourceEntity ^ strokeStyle)
+    {
+        if (brush != nullptr) {
+            D2D1_RECT_F rec = D2D1::RectF((float)rectangle.Left,
+                                          (float)rectangle.Top,
+                                          (float)rectangle.Right,
+                                          (float)rectangle.Bottom);
+            this->renderTarget->DrawRectangle(rec, (ID2D1Brush*)brush->GetInstance(), strokeWidth, (ID2D1StrokeStyle*)strokeStyle->GetInstance());
         }
     }
         //this->renderTarget->DrawRoundedRectangle;
@@ -128,6 +179,14 @@ namespace VisualTree
             this->renderTarget->FillGeometry((ID2D1Geometry*)geometry->GetInstance(), (ID2D1Brush*)brush->GetInstance());
         }
     }
+
+    void VisualRenderTarget::FillGeometry(VisualResourceEntity ^ geometry, VisualResourceEntity ^ brush, VisualResourceEntity ^ opacitybrush)
+    {
+        if (brush != nullptr && geometry->GetInstance() != NULL) {
+            this->renderTarget->FillGeometry((ID2D1Geometry*)geometry->GetInstance(), (ID2D1Brush*)brush->GetInstance(), (ID2D1Brush*)opacitybrush->GetInstance());
+        }
+    }
+
         //this->renderTarget->FillMesh;
         //this->renderTarget->FillOpacityMask;
 

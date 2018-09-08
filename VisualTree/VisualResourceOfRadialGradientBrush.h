@@ -117,7 +117,10 @@ namespace VisualTree
         /// <summary>コンストラクタ。</summary>
         /// <param name="name">リソース名。</param>
 		VisualResourceOfRadialGradientBrush(String ^ name)
-			: VisualResource(name), gamma(GammaParameter::GAMMA_2_2), extendMode(ExtendModeParameter::EXTEND_MODE_CLAMP) {
+			: VisualResource(name),
+              gamma(GammaParameter::GAMMA_2_2),
+              extendMode(ExtendModeParameter::EXTEND_MODE_CLAMP)
+        {
             this->gradientStops = gcnew List<GradientStop^>();
             this->properties = gcnew RadialGradientBrushProperties();
         }

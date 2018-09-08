@@ -18,7 +18,7 @@ namespace VisualTree
         CAP_STYLE_TRIANGLE = 3,
 
         /// <summary>無効キャップ。</summary>
-        CAP_STYLE_FORCE_DWORD = 0xffffffff
+        CAP_STYLE_FORCE_DWORD = -1
     };
 }
 
