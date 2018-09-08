@@ -6,9 +6,24 @@ namespace VisualTree {
 
 	HRESULT VisualTeeControl::CreateDeviceIndependentResources()
 	{
-		ID2D1Factory* factory;
-		HRESULT res = D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED, &factory);
-		m_pD2DFactory = factory;
+        HRESULT res;
+
+        // Direct2Dファクトリを作成
+        ID2D1Factory * factory;
+        res = D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED, &factory);
+        if (FAILED(res)) {
+            return res;
+        }
+		this->factory = factory;
+
+        // DirectWriteファクトリを作成
+        IDWriteFactory * writeFactory;
+        res = DWriteCreateFactory(DWRITE_FACTORY_TYPE_SHARED, __uuidof(IDWriteFactory), (IUnknown**)&writeFactory);
+        if (FAILED(res)) {
+            return res;
+        }
+        this->writeFactory = writeFactory;
+
 		return res;
 	}
 
@@ -16,7 +31,7 @@ namespace VisualTree {
 	{
 		HRESULT hr = S_OK;
 
-		if (this->renderTarget == NULL && m_pD2DFactory != NULL)
+		if (this->renderTarget == NULL && factory != NULL)
 		{
 			// Create a DC render target.
 			D2D1_RENDER_TARGET_PROPERTIES props = D2D1::RenderTargetProperties(
@@ -31,7 +46,7 @@ namespace VisualTree {
 				);
 
 			ID2D1DCRenderTarget * dCRT;
-			hr = m_pD2DFactory->CreateDCRenderTarget(&props, &dCRT);
+			hr = factory->CreateDCRenderTarget(&props, &dCRT);
 			this->renderTarget = dCRT;
 			if (!SUCCEEDED(hr)) { return hr; }
 
@@ -91,7 +106,12 @@ namespace VisualTree {
 		this->renderTarget->SetTransform(D2D1::Matrix3x2F::Identity());
 
         // 描画を行う
-        this->OnRander(gcnew VisualRenderEventArgs(VisualRenderTarget(this->renderTarget), this->resources));
+        try {
+            this->OnRander(gcnew VisualRenderEventArgs(VisualRenderTarget(this->renderTarget), this->resources));
+        }
+        catch (NullReferenceException ^) {
+            // 空ポインタ参照を無視
+        }
 
         // 描画終了を通知する
 		hr = this->renderTarget->EndDraw();
@@ -140,7 +160,6 @@ namespace VisualTree {
     //-------------------------------------------------------------------------
     // リソース作成
     //-------------------------------------------------------------------------
-    // ソリッドカラーブラシ
     VisualResourceOfSolidColorBrush ^ VisualTeeControl::CreateSolidColorBrush(String ^ name, int red, int green, int blue, int alpha)
     {
         VisualResourceOfSolidColorBrush ^ res = gcnew VisualResourceOfSolidColorBrush(name, red, green, blue, alpha);
@@ -148,10 +167,6 @@ namespace VisualTree {
         return res;
     }
 
-    /// <summary>ソリッドカラーブラシを作成する。</summary>
-    /// <param name="name">リソース名。</param>
-    /// <param name="color">ブラシの色。</param>
-    /// <return>リソース。</return>
     VisualResourceOfSolidColorBrush ^ VisualTeeControl::CreateSolidColorBrush(String ^ name, Color color)
     {
         VisualResourceOfSolidColorBrush ^ res = gcnew VisualResourceOfSolidColorBrush(name, color.R, color.G, color.B, color.A);
@@ -159,10 +174,9 @@ namespace VisualTree {
         return res;
     }
 
-    // ジオメトリ
     VisualResourceOfPathGeometry ^ VisualTeeControl::CreatePathGeometry(String ^ name)
     {
-        VisualResourceOfPathGeometry ^ res = gcnew VisualResourceOfPathGeometry(name, this->m_pD2DFactory);
+        VisualResourceOfPathGeometry ^ res = gcnew VisualResourceOfPathGeometry(name, this->factory);
         this->srcres->Add(res);
         return res;
     }
@@ -174,9 +188,23 @@ namespace VisualTree {
         return res;
     }
 
+    VisualResourceOfLinearGradientBrush ^ VisualTeeControl::CreateLinearGradientBrush(String ^ name)
+    {
+        VisualResourceOfLinearGradientBrush ^ res = gcnew VisualResourceOfLinearGradientBrush(name);
+        this->srcres->Add(res);
+        return res;
+    }
+
     VisualResourceOfRadialGradientBrush ^ VisualTeeControl::CreateRadialGradientBrush(String ^ name)
     {
         VisualResourceOfRadialGradientBrush ^ res = gcnew VisualResourceOfRadialGradientBrush(name);
+        this->srcres->Add(res);
+        return res;
+    }
+
+    VisualResourceOfTextFormat ^ VisualTeeControl::CreateTextFormat(String ^ name)
+    {
+        VisualResourceOfTextFormat ^ res = gcnew VisualResourceOfTextFormat(name, this->writeFactory);
         this->srcres->Add(res);
         return res;
     }

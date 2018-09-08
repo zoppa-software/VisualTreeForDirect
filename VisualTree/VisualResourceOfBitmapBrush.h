@@ -4,6 +4,7 @@
 #include <d2d1helper.h>
 #include <dwrite.h>
 #include <wincodec.h>
+#include "ExtendModeParameter.h"
 #include "VisualResource.h"
 #include "VisualResourceEntity.h"
 
@@ -18,47 +19,31 @@ namespace VisualTree
         : public VisualResource
     {
     public:
-        /// <summary>ビットマップの配置方法を指定する。</summary>
-        enum class EXTEND_MODE
-        {
-            /// <summary>サンプルポイントをエッジにクランプすることにより、ソースのエッジを拡張します。</summary>
-            EXTEND_MODE_CLAMP = 0,
-    
-            /// <summary>ベースタイルは変換されずに描画され、残りはベースタイルを繰り返すことで塗りつぶされます。</summary>
-            EXTEND_MODE_WRAP = 1,
-    
-            /// <summary>折り返しと同じですが、代替タイルが反転します。ベースタイルは変形されずに描画されます。</summary>
-            EXTEND_MODE_MIRROR = 2,
-
-            /// <summary>無効値。</summary>
-            EXTEND_MODE_FORCE_DWORD = -1
-
-        };
-
         /// <summary>不足部の引き延ばしプロパティ。</summary>
         ref class BitmapBrushProperties
         {
         private:
             // 引き延ばし設定
-            EXTEND_MODE exX, exY;
+            ExtendModeParameter exX, exY;
 
         public:
             /// <summary>横方向引き延ばし設定を設定、取得する。</summary>
-            property EXTEND_MODE ExtendModeX {
-                EXTEND_MODE get() { return this->exX; }
-                void set(EXTEND_MODE val) { this->exX = val; }
+            property ExtendModeParameter ExtendModeX {
+                ExtendModeParameter get() { return this->exX; }
+                void set(ExtendModeParameter val) { this->exX = val; }
             }
 
             /// <summary>縦方向引き延ばし設定を設定、取得する。</summary>
-            property EXTEND_MODE ExtendModeY {
-                EXTEND_MODE get() { return this->exY; }
-                void set(EXTEND_MODE val) { this->exY = val; }
+            property ExtendModeParameter ExtendModeY {
+                ExtendModeParameter get() { return this->exY; }
+                void set(ExtendModeParameter val) { this->exY = val; }
             }
 
         public:
             /// <summary>コンストラクタ。</summary>
             BitmapBrushProperties()
-                : exX(EXTEND_MODE::EXTEND_MODE_WRAP), exY(EXTEND_MODE::EXTEND_MODE_WRAP)
+                : exX(ExtendModeParameter::EXTEND_MODE_WRAP),
+                  exY(ExtendModeParameter::EXTEND_MODE_WRAP)
             {}
         };
 
@@ -142,7 +127,7 @@ namespace VisualTree
 
             // ビットマップ描画ターゲットの解放
             bitmapTarget->Release();
-            return gcnew VisualResourceEntity(this, brush);
+            return gcnew VisualResourceEntity2D(this, brush);
         }
     };
 }

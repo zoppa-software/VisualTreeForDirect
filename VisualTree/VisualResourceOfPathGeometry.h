@@ -240,7 +240,7 @@ namespace VisualTree {
 		}
 
 		VisualResourceEntity ^ ChangeEntity(ID2D1DCRenderTarget * renderTarget) override {
-			return gcnew VisualResourceEntity(this, this->geometry);
+			return gcnew VisualResourceEntity2D(this, this->geometry, true);
 		}
 	};
 }

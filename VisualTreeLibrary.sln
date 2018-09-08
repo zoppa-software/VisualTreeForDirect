@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "VisualTree", "VisualTree\Vi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeometriesExample", "GeometriesExample\GeometriesExample.csproj", "{B56ABFD7-7DA7-405E-83B9-B5301DC8C057}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrushTypesExample", "BrushTypesExample\BrushTypesExample.csproj", "{5FA0B0CC-2E86-4DDF-B7C7-E0B862870226}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,18 @@ Global
 		{B56ABFD7-7DA7-405E-83B9-B5301DC8C057}.Release|x64.Build.0 = Release|Any CPU
 		{B56ABFD7-7DA7-405E-83B9-B5301DC8C057}.Release|x86.ActiveCfg = Release|Any CPU
 		{B56ABFD7-7DA7-405E-83B9-B5301DC8C057}.Release|x86.Build.0 = Release|Any CPU
+		{5FA0B0CC-2E86-4DDF-B7C7-E0B862870226}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FA0B0CC-2E86-4DDF-B7C7-E0B862870226}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FA0B0CC-2E86-4DDF-B7C7-E0B862870226}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{5FA0B0CC-2E86-4DDF-B7C7-E0B862870226}.Debug|x64.Build.0 = Debug|Any CPU
+		{5FA0B0CC-2E86-4DDF-B7C7-E0B862870226}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5FA0B0CC-2E86-4DDF-B7C7-E0B862870226}.Debug|x86.Build.0 = Debug|Any CPU
+		{5FA0B0CC-2E86-4DDF-B7C7-E0B862870226}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FA0B0CC-2E86-4DDF-B7C7-E0B862870226}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FA0B0CC-2E86-4DDF-B7C7-E0B862870226}.Release|x64.ActiveCfg = Release|Any CPU
+		{5FA0B0CC-2E86-4DDF-B7C7-E0B862870226}.Release|x64.Build.0 = Release|Any CPU
+		{5FA0B0CC-2E86-4DDF-B7C7-E0B862870226}.Release|x86.ActiveCfg = Release|Any CPU
+		{5FA0B0CC-2E86-4DDF-B7C7-E0B862870226}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

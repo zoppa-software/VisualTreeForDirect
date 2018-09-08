@@ -16,8 +16,8 @@ using namespace System::Collections::Generic;
 
 namespace VisualTree
 {
-    /// <summary>放射グラデーションブラシインスタンス。</summary>
-	public ref class VisualResourceOfRadialGradientBrush
+    /// <summary>ライングラデーションブラシインスタンス。</summary>
+	public ref class VisualResourceOfLinearGradientBrush
         : public VisualResource
     {
     public:
@@ -40,45 +40,27 @@ namespace VisualTree
             {}
         };
 
-        /// <summary>グラデーションの原点のオフセット、グラデーション楕円のサイズと位置を格納。</summary>
-        ref class RadialGradientBrushProperties
+        /// <summary>グラデーション勾配軸の開始点と終了点を格納。</summary>
+        ref class LinearGradientBrushProperties
         {
         private:
-            // グラデーション楕円の中心
-            PointF  center;
+            // グラデーション軸の開始点
+            PointF  startPoint;
 
-            // グラデーション楕円の中心と相対的なグラデーション原点のオフセット
-            PointF  gradientOriginOffset;
-
-            // グラデーション楕円のX半径
-            float   radiusX;
-
-            // グラデーション楕円のY半径
-            float   radiusY;
+            // グラデーション軸の終了点
+            PointF  endPoint;
 
         public:
-            /// <summary>グラデーション楕円の中心を設定、取得する。</summary>
-            property PointF Center {
-                PointF get() { return this->center; }
-                void set(PointF pos) { this->center = pos; }
+            /// <summary>グラデーション軸の開始点を設定、取得する。</summary>
+            property PointF StartPoint {
+                PointF get() { return this->startPoint; }
+                void set(PointF pos) { this->startPoint = pos; }
             }
 
-            /// <summary>グラデーション楕円の中心と相対的なグラデーション原点のオフセットを設定、取得する。</summary>
-            property PointF GradientOriginOffset {
-                PointF get() { return this->gradientOriginOffset; }
-                void set(PointF pos) { this->gradientOriginOffset = pos; }
-            }
-
-            /// <summary>グラデーション楕円のX半径を設定、取得する。</summary>
-            property float RadiusX {
-                float get() { return this->radiusX; }
-                void set(float pos) { this->radiusX = pos; }
-            }
-
-            /// <summary>グラデーション楕円のY半径を設定、取得する。</summary>
-            property float RadiusY {
-                float get() { return this->radiusY; }
-                void set(float pos) { this->radiusY = pos; }
+            /// <summary>グラデーション軸の終了点を設定、取得する。</summary>
+            property PointF EndPoint {
+                PointF get() { return this->endPoint; }
+                void set(PointF pos) { this->endPoint = pos; }
             }
         };
 
@@ -93,7 +75,7 @@ namespace VisualTree
         ExtendModeParameter extendMode;
 
         // グラデーションの原点のオフセット、グラデーション楕円のサイズと位置
-        RadialGradientBrushProperties ^ properties;
+        LinearGradientBrushProperties ^ properties;
 
     public:
         /// <summary>ガンマ色空間設定を設定、取得する。</summary>
@@ -108,22 +90,22 @@ namespace VisualTree
             void set(ExtendModeParameter mode) { this->extendMode = mode; }
         }
 
-        /// <summary>グラデーションの原点のオフセット、グラデーション楕円のサイズと位置を設定、取得する。</summary>
-        property RadialGradientBrushProperties ^ Propertes {
-            RadialGradientBrushProperties ^ get() { return this->properties; }
+        /// <summary>グラデーション勾配軸の開始点と終了点を設定、取得する。</summary>
+        property LinearGradientBrushProperties ^ Propertes {
+            LinearGradientBrushProperties ^ get() { return this->properties; }
         }
 
 	public:
         /// <summary>コンストラクタ。</summary>
         /// <param name="name">リソース名。</param>
-		VisualResourceOfRadialGradientBrush(String ^ name)
+		VisualResourceOfLinearGradientBrush(String ^ name)
 			: VisualResource(name), gamma(GammaParameter::GAMMA_2_2), extendMode(ExtendModeParameter::EXTEND_MODE_CLAMP) {
             this->gradientStops = gcnew List<GradientStop^>();
-            this->properties = gcnew RadialGradientBrushProperties();
+            this->properties = gcnew LinearGradientBrushProperties();
         }
 
         /// <summary>デストラクタ。</summary>
-		~VisualResourceOfRadialGradientBrush() {}
+		~VisualResourceOfLinearGradientBrush() {}
 
 	public:
         /// <summary>グラデーション境界の位置と色を全て消去する。</summary>
@@ -165,19 +147,17 @@ namespace VisualTree
             
             // グラデーション設定を行う
             ID2D1GradientStopCollection * gradientStops = NULL;
-            ID2D1RadialGradientBrush * brush = NULL;
+            ID2D1LinearGradientBrush * brush = NULL;
             HRESULT hr = renderTarget->CreateGradientStopCollection(pos.data(),
                                                                     pos.size(),
                                                                     (D2D1_GAMMA)this->gamma,
                                                                     (D2D1_EXTEND_MODE)this->extendMode,
                                                                     &gradientStops);
             if (SUCCEEDED(hr)) {
-                D2D1_RADIAL_GRADIENT_BRUSH_PROPERTIES props = D2D1::RadialGradientBrushProperties(
-                    D2D1::Point2F(this->properties->Center.X, this->properties->Center.Y),
-                    D2D1::Point2F(this->properties->GradientOriginOffset.X, this->properties->GradientOriginOffset.Y),
-                    this->properties->RadiusX,
-                    this->properties->RadiusY);
-                renderTarget->CreateRadialGradientBrush(props, gradientStops, &brush);
+                D2D1_LINEAR_GRADIENT_BRUSH_PROPERTIES props = D2D1::LinearGradientBrushProperties(
+                    D2D1::Point2F(this->properties->StartPoint.X, this->properties->StartPoint.Y),
+                    D2D1::Point2F(this->properties->EndPoint.X, this->properties->EndPoint.Y));
+                renderTarget->CreateLinearGradientBrush(props, gradientStops, &brush);
                 gradientStops->Release();
             }
             return gcnew VisualResourceEntity2D(this, brush);

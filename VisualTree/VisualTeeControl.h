@@ -4,12 +4,15 @@
 #include <d2d1helper.h>
 #include <dwrite.h>
 #include <wincodec.h>
+#include <dwmapi.h>
 #include "VisualRenderEventArgs.h"
 #include "VisualResources.h"
 #include "VisualResourceOfSolidColorBrush.h"
 #include "VisualResourceOfPathGeometry.h"
 #include "VisualResourceOfBitmapBrush.h"
+#include "VisualResourceOfLineGradientBrush.h"
 #include "VisualResourceOfRadialGradientBrush.h"
+#include "VisualResourceOfTextFormat.h"
 
 using namespace System;
 using namespace System::ComponentModel;
@@ -46,7 +49,11 @@ namespace VisualTree {
         event VisualResourceEventHandler ^ VisualInitialResourceEvent;
 
 	private:
-		ID2D1Factory *m_pD2DFactory;
+        // Direct2Dファクトリ
+		ID2D1Factory * factory;
+
+        // DirectWriteファクトリ
+		IDWriteFactory * writeFactory;
 
         // レンダーターゲット
 		ID2D1DCRenderTarget * renderTarget;
@@ -60,7 +67,7 @@ namespace VisualTree {
 	public:
 		/// <summary>コンストラクタ。</summary>
 		VisualTeeControl()
-			: m_pD2DFactory(NULL), renderTarget(NULL)
+			: factory(NULL), writeFactory(NULL), renderTarget(NULL)
 		{
 			InitializeComponent();
 
@@ -75,8 +82,12 @@ namespace VisualTree {
 			if (components) {
 				delete components;
 			}
-			SAFE_RELEASE(m_pD2DFactory);
-			this->DiscardDeviceResources();
+			SAFE_RELEASE(this->factory);
+            SAFE_RELEASE(this->writeFactory);
+			SAFE_RELEASE(this->renderTarget);
+		    for each(VisualResourceEntity ^ ins in this->resources->Values) {
+			    ins->ForceRelease();
+		    }
 		}
 
     protected:
@@ -157,6 +168,16 @@ namespace VisualTree {
         /// <summary>ライングラデーションブラシを作成する。</summary>
         /// <param name="name">リソース名。</param>
         /// <return>リソース。</return>
-        VisualResourceOfRadialGradientBrush ^ VisualTeeControl::CreateRadialGradientBrush(String ^ name);
+        VisualResourceOfLinearGradientBrush ^ CreateLinearGradientBrush(String ^ name);
+
+        /// <summary>放射グラデーションブラシを作成する。</summary>
+        /// <param name="name">リソース名。</param>
+        /// <return>リソース。</return>
+        VisualResourceOfRadialGradientBrush ^ CreateRadialGradientBrush(String ^ name);
+
+        /// <summary>文字列書式リソースを作成する。</summary>
+        /// <param name="name">リソース名。</param>
+        /// <return>リソース。</return>
+        VisualResourceOfTextFormat ^ CreateTextFormat(String ^ name);
 	};
 }

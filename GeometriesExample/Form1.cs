@@ -32,6 +32,7 @@ namespace GeometriesExample
                 this.mainControl.CreateBitmapBrush("bitmap", (Bitmap)bmp.Clone());
             }
 
+            // グラデーション
             var grad = this.mainControl.CreateRadialGradientBrush("grad");
             grad.AddGradientStop(Color.Gold, 0);
             grad.AddGradientStop(Color.Orange, 0.85f);
@@ -40,45 +41,6 @@ namespace GeometriesExample
             grad.Propertes.GradientOriginOffset = new PointF(140, 140);
             grad.Propertes.RadiusX = 140;
             grad.Propertes.RadiusY = 140;
-            //if (SUCCEEDED(hr))
-            //{
-            //    // Create an array of gradient stops to put in the gradient stop
-            //    // collection that will be used in the gradient brush.
-            //    ID2D1GradientStopCollection* pGradientStops = NULL;
-
-            //    D2D1_GRADIENT_STOP gradientStops[3];
-            //    gradientStops[0].color = D2D1::ColorF(D2D1::ColorF::Gold, 1);
-            //    gradientStops[0].position = 0.0f;
-            //    gradientStops[1].color = D2D1::ColorF(D2D1::ColorF::Orange, 0.8);
-            //    gradientStops[1].position = 0.85f;
-            //    gradientStops[2].color = D2D1::ColorF(D2D1::ColorF::OrangeRed, 0.7);
-            //    gradientStops[2].position = 1.0f;
-
-            //    // Create the ID2D1GradientStopCollection from a previously
-            //    // declared array of D2D1_GRADIENT_STOP structs.
-            //    hr = m_pRenderTarget->CreateGradientStopCollection(
-            //        gradientStops,
-            //        3,
-            //        D2D1_GAMMA_2_2,
-            //        D2D1_EXTEND_MODE_CLAMP,
-            //        &pGradientStops
-            //        );
-
-            //    // The center of the gradient is in the center of the box.
-            //    // The gradient origin offset was set to zero(0, 0) or center in this case.
-            //    if (SUCCEEDED(hr))
-            //    {
-            //        hr = m_pRenderTarget->CreateRadialGradientBrush(
-            //            D2D1::RadialGradientBrushProperties(
-            //                D2D1::Point2F(330, 330),
-            //                D2D1::Point2F(140, 140),
-            //                140,
-            //                140),
-            //            pGradientStops,
-            //            &m_pRadialGradientBrush
-            //            );
-            //    }
-            //}
 
             // 左の山
             var leftMon = this.mainControl.CreatePathGeometry("left mountain");

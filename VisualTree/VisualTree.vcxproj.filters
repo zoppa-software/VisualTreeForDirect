@@ -25,6 +25,12 @@
     <Filter Include="Resource\Geometry">
       <UniqueIdentifier>{dc249e65-ea94-4a61-a4e6-c2856f3bb2ae}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource\Text">
+      <UniqueIdentifier>{9868cb57-374b-49f8-8587-36c7b5ec5090}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Figure">
+      <UniqueIdentifier>{9a3b79ee-1618-4682-85bd-4b29283b930f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -77,6 +83,21 @@
     </ClInclude>
     <ClInclude Include="VisualResourceOfPathGeometry.h">
       <Filter>Resource\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="VisualResourceOfTextFormat.h">
+      <Filter>Resource\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="GammaParameter.h">
+      <Filter>Resource\Brush</Filter>
+    </ClInclude>
+    <ClInclude Include="ExtendModeParameter.h">
+      <Filter>Resource\Brush</Filter>
+    </ClInclude>
+    <ClInclude Include="Ellipse.h">
+      <Filter>Figure</Filter>
+    </ClInclude>
+    <ClInclude Include="VisualResourceOfLineGradientBrush.h">
+      <Filter>Resource\Brush</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

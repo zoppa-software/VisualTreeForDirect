@@ -4,6 +4,7 @@
 #include <d2d1helper.h>
 #include <dwrite.h>
 #include <wincodec.h>
+#include "Ellipse.h"
 #include "VisualResources.h"
 #include "VisualResourceEntity.h"
 //#include "VisualResourceOfSolidColorBrush.h"
@@ -36,6 +37,17 @@ namespace VisualTree
 
     public:
         //-----------------------------------------------------------------------------
+        // 座標変換
+        //-----------------------------------------------------------------------------
+        /// <summary>座標系を平衡移動させる。</summary>
+        void SetTransform();
+
+        /// <summary>座標系を平衡移動させる。</summary>
+        /// <param name="offsetX">X移動量。</param>
+        /// <param name="offsetY">Y移動量。</param>
+        void SetTransform(int offsetX, int offsetY);
+
+        //-----------------------------------------------------------------------------
         // 背景色クリア
         //-----------------------------------------------------------------------------
         /// <summary>描画領域を指定された色にクリアします。</summary>
@@ -53,13 +65,18 @@ namespace VisualTree
         // 描画API
         //-----------------------------------------------------------------------------
         //this->renderTarget->DrawBitmap;
-        //this->renderTarget->DrawEllipse;
 
         /// <summary>指定された寸法とストロークで楕円の輪郭を描画します。</summary>
         /// <param name="rect">描画する楕円の位置と半径。</param>
         /// <param name="brush">楕円の輪郭の描画に使用するブラシ。</param>
         /// <param name="strokeWidth">楕円のストロークの太さ。</param>
         void DrawEllipse(RectangleF rect, VisualResourceEntity ^ brush, float strokeWidth);
+
+        /// <summary>指定された寸法とストロークで楕円の輪郭を描画します。</summary>
+        /// <param name="ellipse">楕円領域。</param>
+        /// <param name="brush">楕円の輪郭の描画に使用するブラシ。</param>
+        /// <param name="strokeWidth">楕円のストロークの太さ。</param>
+        void DrawEllipse(Ellipse ellipse, VisualResourceEntity ^ brush, float strokeWidth);
 
         /// <summary>指定されたジオメトリの輪郭を描画します。</summary>
         /// <param name="geometry">描画ジオメトリ。</param>
@@ -75,12 +92,31 @@ namespace VisualTree
         /// <param name="strokeWidth">線のストロークの太さ。</param>
         void DrawLine(PointF startPt, PointF endPt, VisualResourceEntity ^ brush, float strokeWidth);
 
-        //this->renderTarget->DrawRectangle;
-        //this->renderTarget->DrawRoundedRectangle;
-        //this->renderTarget->DrawText;
+        /// <summary>矩形を描画します。</summary>
+        /// <param name="rectangle">対象の矩形。</param>
+        /// <param name="brush">線のブラシ。</param>
+        void DrawRectangle(RectangleF rectangle, VisualResourceEntity ^ brush);
+
+        /// <summary>矩形を描画します。</summary>
+        /// <param name="rectangle">対象の矩形。</param>
+        /// <param name="brush">線のブラシ。</param>
+        /// <param name="strokeWidth">線のストロークの太さ。</param>
+        void DrawRectangle(RectangleF rectangle, VisualResourceEntity ^ brush, float strokeWidth);
+
+        /// <summary>書式情報を使用して、指定された文字列を描画します。</summary>
+        /// <param name="text">描画文字列。</param>
+        /// <param name="format">書式情報。</param>
+        /// <param name="rect">文字列が描画される領域のサイズと位置。</param>
+        /// <param name="brush">描画に使用するブラシ。</param>
+        void DrawText(String ^ text, VisualResourceEntity ^ format, RectangleF rect, VisualResourceEntity ^ brush);
+
         //this->renderTarget->DrawTextLayout;
         //this->renderTarget->FillRoundedRectangle;
-        //this->renderTarget->FillEllipse;
+
+        /// <summary>指定された楕円領域の内部を描画します。</summary>
+        /// <param name="ellipse">楕円領域。</param>
+        /// <param name="brush">楕円内部を塗りつぶすブラシ。</param>
+        void FillEllipse(Ellipse ellipse, VisualResourceEntity ^ brush);
 
         /// <summary>指定されたジオメトリの内部を描画します。</summary>
         /// <param name="geometry">描画ジオメトリ。</param>
@@ -94,7 +130,7 @@ namespace VisualTree
         /// <summary>塗りつぶされた矩形を描画します。</summary>
         /// <param name="rectangle">対象の矩形。</param>
         /// <param name="brush">内部を塗りつぶすブラシ。</param>
-        void FillRectangle(System::Drawing::Rectangle ^ rectangle, VisualResourceEntity ^ brush);
+        void FillRectangle(RectangleF rectangle, VisualResourceEntity ^ brush);
 
         //this->renderTarget->FillRoundedRectangle;
         //this->renderTarget->SetAntialiasMode;

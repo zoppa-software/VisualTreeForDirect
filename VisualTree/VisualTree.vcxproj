@@ -93,7 +93,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>d2d1.lib;WindowsCodecs.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d2d1.lib;Dwrite.lib;Dwmapi.lib;WindowsCodecs.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -104,7 +104,7 @@
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>d2d1.lib;WindowsCodecs.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d2d1.lib;Dwrite.lib;Dwmapi.lib;WindowsCodecs.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -114,7 +114,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>d2d1.lib;WindowsCodecs.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d2d1.lib;Dwrite.lib;Dwmapi.lib;WindowsCodecs.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -124,21 +124,26 @@
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>d2d1.lib;WindowsCodecs.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d2d1.lib;Dwrite.lib;Dwmapi.lib;WindowsCodecs.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="CapStyle.h" />
     <ClInclude Include="DashStyle.h" />
+    <ClInclude Include="Ellipse.h" />
+    <ClInclude Include="ExtendModeParameter.h" />
+    <ClInclude Include="GammaParameter.h" />
     <ClInclude Include="LineJoin.h" />
     <ClInclude Include="resource1.h" />
     <ClInclude Include="VisualRenderTarget.h" />
     <ClInclude Include="VisualResourceEntity.h" />
     <ClInclude Include="VisualResourceEventArgs.h" />
     <ClInclude Include="VisualResourceOfBitmapBrush.h" />
+    <ClInclude Include="VisualResourceOfLineGradientBrush.h" />
     <ClInclude Include="VisualResourceOfPathGeometry.h" />
     <ClInclude Include="VisualResourceOfRadialGradientBrush.h" />
     <ClInclude Include="VisualResourceOfSolidColorBrush.h" />
+    <ClInclude Include="VisualResourceOfTextFormat.h" />
     <ClInclude Include="VisualResources.h" />
     <ClInclude Include="VisualTeeControl.h" />
     <ClInclude Include="Resource.h" />
