@@ -17,7 +17,7 @@ using namespace System::Collections::Generic;
 namespace VisualTree
 {
     /// <summary>放射グラデーションブラシインスタンス。</summary>
-	public ref class VisualResourceOfRadialGradientBrush
+	public ref class VisualResourceOfRadialGradientBrush sealed
         : public VisualResource
     {
     public:

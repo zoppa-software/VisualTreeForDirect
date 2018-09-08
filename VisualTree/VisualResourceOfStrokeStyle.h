@@ -17,7 +17,7 @@ using namespace System::Collections::Generic;
 namespace VisualTree
 {
     /// <summary>ストロークスタイルリソース。</summary>
-    public ref class VisualResourceOfStrokeStyle
+    public ref class VisualResourceOfStrokeStyle sealed
         : public VisualResource
     {
     public:

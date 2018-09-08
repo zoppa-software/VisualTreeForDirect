@@ -9,6 +9,7 @@
 #include "VisualResources.h"
 #include "VisualResourceOfSolidColorBrush.h"
 #include "VisualResourceOfPathGeometry.h"
+#include "VisualResourceOfBitmap.h"
 #include "VisualResourceOfBitmapBrush.h"
 #include "VisualResourceOfLineGradientBrush.h"
 #include "VisualResourceOfRadialGradientBrush.h"
@@ -158,6 +159,12 @@ namespace VisualTree {
         /// <param name="name">リソース名。</param>
         /// <return>リソース。</return>
         VisualResourceOfPathGeometry ^ CreatePathGeometry(String ^ name);
+
+        /// <summary>ビットマップを作成する。</summary>
+        /// <param name="name">リソース名。</param>
+        /// <param name="bitmap">元としたビットマップ。</param>
+        /// <return>リソース。</return>
+        VisualResourceOfBitmap ^ CreateBitmap(String ^ name, Bitmap ^ bitmap);
 
         /// <summary>ビットマップブラシを作成する。</summary>
         /// <param name="name">リソース名。</param>

@@ -181,6 +181,13 @@ namespace VisualTree {
         return res;
     }
 
+    VisualResourceOfBitmap ^ VisualTeeControl::CreateBitmap(String ^ name, Bitmap ^ bitmap)
+    {
+        VisualResourceOfBitmap ^ res = gcnew VisualResourceOfBitmap(name, bitmap);
+        this->srcres->Add(res);
+        return res;
+    }
+
     VisualResourceOfBitmapBrush ^ VisualTeeControl::CreateBitmapBrush(String ^ name, Bitmap ^ bitmap)
     {
         VisualResourceOfBitmapBrush ^ res = gcnew VisualResourceOfBitmapBrush(name, bitmap);

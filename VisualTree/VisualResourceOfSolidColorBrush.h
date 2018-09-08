@@ -13,7 +13,7 @@ using namespace System::Drawing;
 namespace VisualTree
 {
     /// <summary>単色ブラシリソース。</summary>
-	public ref class VisualResourceOfSolidColorBrush
+	public ref class VisualResourceOfSolidColorBrush sealed
 		: public VisualResource
 	{
 	private:

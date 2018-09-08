@@ -6,6 +6,7 @@
 #include <wincodec.h>
 #include "Ellipse.h"
 #include "AntialiasMode.h"
+#include "OpacityMaskContent.h"
 #include "VisualResources.h"
 #include "VisualResourceEntity.h"
 //#include "VisualResourceOfSolidColorBrush.h"
@@ -51,6 +52,13 @@ namespace VisualTree
         void PushAxisAlignedClip(RectangleF rect, AntialiasMode mode);
 
         void PopAxisAlignedClip();
+
+        //-----------------------------------------------------------------------------
+        // 合成設定
+        //-----------------------------------------------------------------------------
+        /// <summary>アンチエイリアスを設定する。</summary>
+        /// <param name="mode">アンチエイリアスモード。</param>
+        void SetAntialiasMode(AntialiasMode mode);
 
         //-----------------------------------------------------------------------------
         // 背景色クリア
@@ -166,8 +174,27 @@ namespace VisualTree
         void FillGeometry(VisualResourceEntity ^ geometry, VisualResourceEntity ^ brush, VisualResourceEntity ^ opacitybrush);
 
         //this->renderTarget->FillMesh;
-        //this->renderTarget->FillOpacityMask;
-        //this->renderTarget->FillRectangle;
+
+        /// <summary>指定されたビットマップによって記述された不透明マスクをブラシに適用し、そのブラシを使用してレンダーターゲットの領域をペイントします。 </summary>
+        /// <param name="bitmap">ブラシに適用する不透明マスク。</param>
+        /// <param name="brush">レンダーターゲットの領域をペイントするために使用されるブラシ。</param>
+        /// <param name="opacitybrush">不透明度マスクに含まれるコンテンツのタイプ。</param>
+        void FillOpacityMask(VisualResourceEntity ^ bitmap, VisualResourceEntity ^ brush, OpacityMaskContent opacityMask);
+
+        /// <summary>指定されたビットマップによって記述された不透明マスクをブラシに適用し、そのブラシを使用してレンダーターゲットの領域をペイントします。 </summary>
+        /// <param name="bitmap">ブラシに適用する不透明マスク。</param>
+        /// <param name="brush">レンダーターゲットの領域をペイントするために使用されるブラシ。</param>
+        /// <param name="opacitybrush">不透明度マスクに含まれるコンテンツのタイプ。</param>
+        /// <param name="destinationRectangle">描画するレンダーターゲットの領域。</param>
+        void FillOpacityMask(VisualResourceEntity ^ bitmap, VisualResourceEntity ^ brush, OpacityMaskContent opacityMask, RectangleF destinationRectangle);
+
+        /// <summary>指定されたビットマップによって記述された不透明マスクをブラシに適用し、そのブラシを使用してレンダーターゲットの領域をペイントします。 </summary>
+        /// <param name="bitmap">ブラシに適用する不透明マスク。</param>
+        /// <param name="brush">レンダーターゲットの領域をペイントするために使用されるブラシ。</param>
+        /// <param name="opacitybrush">不透明度マスクに含まれるコンテンツのタイプ。</param>
+        /// <param name="destinationRectangle">描画するレンダーターゲットの領域。</param>
+        /// <param name="sourceRectangle">不透明マスクとして使用するビットマップの領域。</param>
+        void FillOpacityMask(VisualResourceEntity ^ bitmap, VisualResourceEntity ^ brush, OpacityMaskContent opacityMask, RectangleF destinationRectangle, RectangleF sourceRectangle);
 
         /// <summary>塗りつぶされた矩形を描画します。</summary>
         /// <param name="rectangle">対象の矩形。</param>

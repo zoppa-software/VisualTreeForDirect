@@ -5,6 +5,7 @@
 #include <dwrite.h>
 #include <wincodec.h>
 #include "ExtendModeParameter.h"
+#include "BitmapInterpolationMode.h"
 #include "VisualResource.h"
 #include "VisualResourceEntity.h"
 
@@ -26,6 +27,9 @@ namespace VisualTree
             // 引き延ばし設定
             ExtendModeParameter exX, exY;
 
+            // 補間モード
+            BitmapInterpolationMode mode;
+
         public:
             /// <summary>横方向引き延ばし設定を設定、取得する。</summary>
             property ExtendModeParameter ExtendModeX {
@@ -39,11 +43,18 @@ namespace VisualTree
                 void set(ExtendModeParameter val) { this->exY = val; }
             }
 
+            /// <summary>補間モードを設定、取得する。</summary>
+            property BitmapInterpolationMode InterpolationMode {
+                BitmapInterpolationMode get() { return this->mode; }
+                void set(BitmapInterpolationMode val) { this->mode = val; }
+            }
+
         public:
             /// <summary>コンストラクタ。</summary>
             BitmapBrushProperties()
                 : exX(ExtendModeParameter::EXTEND_MODE_WRAP),
-                  exY(ExtendModeParameter::EXTEND_MODE_WRAP)
+                  exY(ExtendModeParameter::EXTEND_MODE_WRAP),
+                  mode(BitmapInterpolationMode::BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR)
             {}
         };
 
@@ -119,7 +130,8 @@ namespace VisualTree
                     // ビットマップブラシを作成する
 		            renderTarget->CreateBitmapBrush(bitmap, 
                         D2D1::BitmapBrushProperties((D2D1_EXTEND_MODE)this->properties->ExtendModeX,
-                                                    (D2D1_EXTEND_MODE)this->properties->ExtendModeY),
+                                                    (D2D1_EXTEND_MODE)this->properties->ExtendModeY,
+                                                    (D2D1_BITMAP_INTERPOLATION_MODE)this->properties->InterpolationMode),
                     &brush);
                     bitmap->Release();
                 }

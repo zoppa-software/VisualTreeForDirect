@@ -31,6 +31,9 @@
     <Filter Include="Figure">
       <UniqueIdentifier>{9a3b79ee-1618-4682-85bd-4b29283b930f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource\Bitmap">
+      <UniqueIdentifier>{bf7e086e-a9f6-4646-96c4-d0aec43df39c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -113,6 +116,15 @@
     </ClInclude>
     <ClInclude Include="AntialiasMode.h">
       <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="BitmapInterpolationMode.h">
+      <Filter>Resource\Brush</Filter>
+    </ClInclude>
+    <ClInclude Include="VisualResourceOfBitmap.h">
+      <Filter>Resource\Bitmap</Filter>
+    </ClInclude>
+    <ClInclude Include="OpacityMaskContent.h">
+      <Filter>Resource\Bitmap</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrushTypesExample", "BrushT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClipWithAxisAlignedClipSample", "ClipWithAxisAlignedClipSample\ClipWithAxisAlignedClipSample.csproj", "{0136A880-00DC-4C18-A8D7-37EB27D0DB3B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClipWithBitmapMasks", "ClipWithBitmapMasks\ClipWithBitmapMasks.csproj", "{B2DE5953-9BB0-4082-8F0C-0D0FC02E88BA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +69,18 @@ Global
 		{0136A880-00DC-4C18-A8D7-37EB27D0DB3B}.Release|x64.Build.0 = Release|Any CPU
 		{0136A880-00DC-4C18-A8D7-37EB27D0DB3B}.Release|x86.ActiveCfg = Release|Any CPU
 		{0136A880-00DC-4C18-A8D7-37EB27D0DB3B}.Release|x86.Build.0 = Release|Any CPU
+		{B2DE5953-9BB0-4082-8F0C-0D0FC02E88BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2DE5953-9BB0-4082-8F0C-0D0FC02E88BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2DE5953-9BB0-4082-8F0C-0D0FC02E88BA}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B2DE5953-9BB0-4082-8F0C-0D0FC02E88BA}.Debug|x64.Build.0 = Debug|Any CPU
+		{B2DE5953-9BB0-4082-8F0C-0D0FC02E88BA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B2DE5953-9BB0-4082-8F0C-0D0FC02E88BA}.Debug|x86.Build.0 = Debug|Any CPU
+		{B2DE5953-9BB0-4082-8F0C-0D0FC02E88BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2DE5953-9BB0-4082-8F0C-0D0FC02E88BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2DE5953-9BB0-4082-8F0C-0D0FC02E88BA}.Release|x64.ActiveCfg = Release|Any CPU
+		{B2DE5953-9BB0-4082-8F0C-0D0FC02E88BA}.Release|x64.Build.0 = Release|Any CPU
+		{B2DE5953-9BB0-4082-8F0C-0D0FC02E88BA}.Release|x86.ActiveCfg = Release|Any CPU
+		{B2DE5953-9BB0-4082-8F0C-0D0FC02E88BA}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

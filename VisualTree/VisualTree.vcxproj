@@ -129,6 +129,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AntialiasMode.h" />
+    <ClInclude Include="BitmapInterpolationMode.h" />
     <ClInclude Include="CapStyle.h" />
     <ClInclude Include="DashStyle.h" />
     <ClInclude Include="DWriteFontStretch.h" />
@@ -138,10 +139,12 @@
     <ClInclude Include="ExtendModeParameter.h" />
     <ClInclude Include="GammaParameter.h" />
     <ClInclude Include="LineJoin.h" />
+    <ClInclude Include="OpacityMaskContent.h" />
     <ClInclude Include="resource1.h" />
     <ClInclude Include="VisualRenderTarget.h" />
     <ClInclude Include="VisualResourceEntity.h" />
     <ClInclude Include="VisualResourceEventArgs.h" />
+    <ClInclude Include="VisualResourceOfBitmap.h" />
     <ClInclude Include="VisualResourceOfBitmapBrush.h" />
     <ClInclude Include="VisualResourceOfLineGradientBrush.h" />
     <ClInclude Include="VisualResourceOfPathGeometry.h" />

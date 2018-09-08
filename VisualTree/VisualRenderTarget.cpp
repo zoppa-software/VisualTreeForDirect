@@ -32,6 +32,14 @@ namespace VisualTree
     }
 
     //-----------------------------------------------------------------------------
+    // ‡¬Ý’è
+    //-----------------------------------------------------------------------------
+    void VisualRenderTarget::SetAntialiasMode(AntialiasMode mode)
+    {
+        this->renderTarget->SetAntialiasMode((D2D1_ANTIALIAS_MODE)mode);
+    }
+
+    //-----------------------------------------------------------------------------
     // ”wŒiFƒNƒŠƒA
     //-----------------------------------------------------------------------------
     void VisualRenderTarget::Clear(Color color)
@@ -188,7 +196,50 @@ namespace VisualTree
     }
 
         //this->renderTarget->FillMesh;
-        //this->renderTarget->FillOpacityMask;
+
+    void VisualRenderTarget::FillOpacityMask(VisualResourceEntity ^ bitmap, VisualResourceEntity ^ brush, OpacityMaskContent opacityMask)
+    {
+        if (bitmap != nullptr && brush != nullptr) {
+            this->renderTarget->FillOpacityMask((ID2D1Bitmap*)bitmap->GetInstance(),
+                                                (ID2D1Brush*)brush->GetInstance(),
+                                                (D2D1_OPACITY_MASK_CONTENT)opacityMask);
+        }
+    }
+
+    void VisualRenderTarget::FillOpacityMask(VisualResourceEntity ^ bitmap, VisualResourceEntity ^ brush, OpacityMaskContent opacityMask, RectangleF destinationRectangle)
+    {
+        if (bitmap != nullptr && brush != nullptr) {
+            D2D1_RECT_F dest = D2D1::RectF((float)destinationRectangle.Left,
+                                           (float)destinationRectangle.Top,
+                                           (float)destinationRectangle.Right,
+                                           (float)destinationRectangle.Bottom);
+
+            this->renderTarget->FillOpacityMask((ID2D1Bitmap*)bitmap->GetInstance(),
+                                                (ID2D1Brush*)brush->GetInstance(),
+                                                (D2D1_OPACITY_MASK_CONTENT)opacityMask,
+                                                &dest);
+        }
+    }
+
+    void VisualRenderTarget::FillOpacityMask(VisualResourceEntity ^ bitmap, VisualResourceEntity ^ brush,
+                                             OpacityMaskContent opacityMask, RectangleF destinationRectangle, RectangleF sourceRectangle)
+    {
+        if (bitmap != nullptr && brush != nullptr) {
+            D2D1_RECT_F dest = D2D1::RectF((float)destinationRectangle.Left,
+                                           (float)destinationRectangle.Top,
+                                           (float)destinationRectangle.Right,
+                                           (float)destinationRectangle.Bottom);
+            D2D1_RECT_F src = D2D1::RectF((float)sourceRectangle.Left,
+                                          (float)sourceRectangle.Top,
+                                          (float)sourceRectangle.Right,
+                                          (float)sourceRectangle.Bottom);
+
+            this->renderTarget->FillOpacityMask((ID2D1Bitmap*)bitmap->GetInstance(),
+                                                (ID2D1Brush*)brush->GetInstance(),
+                                                (D2D1_OPACITY_MASK_CONTENT)opacityMask,
+                                                &dest, &src);
+        }
+    }
 
     void VisualRenderTarget::FillRectangle(RectangleF rectangle, VisualResourceEntity ^ brush)
     {
