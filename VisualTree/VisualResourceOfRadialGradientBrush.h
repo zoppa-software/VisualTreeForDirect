@@ -183,7 +183,7 @@ namespace VisualTree
                 renderTarget->CreateRadialGradientBrush(props, gradientStops, &brush);
                 gradientStops->Release();
             }
-            return gcnew VisualResourceEntity2D(this, brush);
+            return gcnew VisualResourceEntityOfBrush(this, brush);
         }
     };
 }

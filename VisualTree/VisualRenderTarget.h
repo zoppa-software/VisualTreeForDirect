@@ -43,6 +43,10 @@ namespace VisualTree
         /// <param name="offsetY">Y移動量。</param>
         void SetTransform(int offsetX, int offsetY);
 
+        /// <summary>座標系を平衡移動させる。</summary>
+        /// <param name="matrix">移動量マトリックス。</param>
+        void SetTransform(Matrix matrix);
+
         /// <summary>後続のすべての描画操作がクリップされる四角形を指定します。</summary>
         /// <param name="rect">クリッピング領域のサイズと位置 (デバイス非依存のピクセル単位)。</param>
         /// <param name="mode">アンチエイリアシングモード。</param>

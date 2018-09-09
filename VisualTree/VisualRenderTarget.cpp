@@ -17,6 +17,11 @@ namespace VisualTree
         this->renderTarget->SetTransform(D2D1::Matrix3x2F::Translation(D2D1::SizeF((float)offsetX, (float)offsetY)));
     }
 
+    void VisualRenderTarget::SetTransform(Matrix matrix)
+    {
+        this->renderTarget->SetTransform(matrix.Convert());
+    }
+
     void VisualRenderTarget::PushAxisAlignedClip(RectangleF rect, AntialiasMode mode)
     {
         D2D1_RECT_F rec = D2D1::RectF((float)rect.Left,

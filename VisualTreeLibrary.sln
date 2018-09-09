@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClipWithBitmapMasks", "Clip
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClipWithLayersExample", "ClipWithLayersExample\ClipWithLayersExample.csproj", "{FEF5DCD8-8DEA-442E-ACA2-1A10F62E3638}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransformBrushesExample", "TransformBrushesExample\TransformBrushesExample.csproj", "{7D5B950D-E32A-4854-836F-0CD2A037B569}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -95,6 +97,18 @@ Global
 		{FEF5DCD8-8DEA-442E-ACA2-1A10F62E3638}.Release|x64.Build.0 = Release|Any CPU
 		{FEF5DCD8-8DEA-442E-ACA2-1A10F62E3638}.Release|x86.ActiveCfg = Release|Any CPU
 		{FEF5DCD8-8DEA-442E-ACA2-1A10F62E3638}.Release|x86.Build.0 = Release|Any CPU
+		{7D5B950D-E32A-4854-836F-0CD2A037B569}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D5B950D-E32A-4854-836F-0CD2A037B569}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D5B950D-E32A-4854-836F-0CD2A037B569}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{7D5B950D-E32A-4854-836F-0CD2A037B569}.Debug|x64.Build.0 = Debug|Any CPU
+		{7D5B950D-E32A-4854-836F-0CD2A037B569}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7D5B950D-E32A-4854-836F-0CD2A037B569}.Debug|x86.Build.0 = Debug|Any CPU
+		{7D5B950D-E32A-4854-836F-0CD2A037B569}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D5B950D-E32A-4854-836F-0CD2A037B569}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D5B950D-E32A-4854-836F-0CD2A037B569}.Release|x64.ActiveCfg = Release|Any CPU
+		{7D5B950D-E32A-4854-836F-0CD2A037B569}.Release|x64.Build.0 = Release|Any CPU
+		{7D5B950D-E32A-4854-836F-0CD2A037B569}.Release|x86.ActiveCfg = Release|Any CPU
+		{7D5B950D-E32A-4854-836F-0CD2A037B569}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -24,21 +24,29 @@ namespace VisualTree
         ref class LayerParameters
         {
         public:
+            /// <summary>レイヤーのコンテンツの境界。</summary>
             RectangleF contentBounds;
 
+            /// <summary>ジオメトリ マスクは、レンダー ターゲットに統合されているレイヤーの領域を指定します。</summary>
             VisualResourceEntity ^ geometricMask;
 
+            /// <summary>アンチエイリアシング モードを指定する値。</summary>
             AntialiasMode maskAntialiasMode;
 
+            /// <summary>レイヤーの作成時にジオメトリ マスクに適用される変換を指定する値。</summary>
             Matrix maskTransform;
 
+            /// <summary>ターゲットに統合されるときにレイヤー内のすべてのリソースに一律に適用される不透明度の値。</summary>
             float opacity;
 
+            /// <summary>レイヤーの不透明度の変更に使用されるブラシ。</summary>
             VisualResourceEntity ^ opacityBrush;
 
+            /// <summary>レイヤーが ClearType アンチエイリアシングを使用してテキストをレンダリングするかどうかを指定する値。</summary>
             LayerOptions layerOptions;
 
         public:
+            /// <summary>コンストラクタ。</summary>
             LayerParameters()
                 : contentBounds(RectangleF(FLT_MIN, FLT_MIN, FLT_MAX, FLT_MAX)),
                   geometricMask(nullptr),

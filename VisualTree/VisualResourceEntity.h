@@ -5,6 +5,7 @@
 #include <dwrite.h>
 #include <wincodec.h>
 #include "VisualResource.h"
+#include "Matrix.h"
 
 using namespace System;
 using namespace System::Drawing;
@@ -47,6 +48,18 @@ namespace VisualTree
         /// <summary>透明度を変更する。</summary>
         /// <param name="opacity">透明度（0 ～ 255）。</param>
         virtual void SetOpacity(int opacity) abstract;
+
+        /// <summary>座標系を平衡移動させる。</summary>
+        virtual void SetTransform() abstract;
+
+        /// <summary>座標系を平衡移動させる。</summary>
+        /// <param name="offsetX">X移動量。</param>
+        /// <param name="offsetY">Y移動量。</param>
+        virtual void SetTransform(float offsetX, float offsetY) abstract;
+
+        /// <summary>座標系を平衡移動させる。</summary>
+        /// <param name="matrix">移動量マトリックス。</param>
+        virtual void SetTransform(Matrix matrix) abstract;
     };
 
     /// <summary>リソースクラス・描画実体。</summary>
@@ -106,6 +119,51 @@ namespace VisualTree
         /// <summary>透明度を変更する。</summary>
         /// <param name="opacity">透明度（0 ～ 255）。</param>
         void SetOpacity(int opacity) override {}
+
+        /// <summary>座標系を平衡移動させる。</summary>
+        void SetTransform() override {}
+
+        /// <summary>座標系を平衡移動させる。</summary>
+        /// <param name="offsetX">X移動量。</param>
+        /// <param name="offsetY">Y移動量。</param>
+        void SetTransform(float offsetX, float offsetY) override {}
+
+        /// <summary>座標系を平衡移動させる。</summary>
+        /// <param name="matrix">移動量マトリックス。</param>
+        void SetTransform(Matrix matrix) override {}
+    };
+
+    /// <summary>リソースクラス・描画実体（ブラシ用）</summary>
+    ref class VisualResourceEntityOfBrush sealed
+        : public VisualResourceEntity2D
+    {
+    public:
+        /// <summary>コンストラクタ。</summary>
+        /// <param name="resource">元のリソース。</param>
+        /// <param name="instance">Direct2Dのインスタンス。</param>
+        VisualResourceEntityOfBrush(VisualResource ^ parent, ID2D1Resource * instance)
+            : VisualResourceEntity2D(parent, instance) {}
+
+    public:
+        /// <summary>色設定を変更する。</summary>
+        /// <param name="color">変更する色。</param>
+        void SetColor(System::Drawing::Color color) override {}
+
+        /// <summary>透明度を変更する。</summary>
+        /// <param name="opacity">透明度（0 ～ 255）。</param>
+        void SetOpacity(int opacity) override;
+
+        /// <summary>座標系を平衡移動させる。</summary>
+        void SetTransform() override;
+
+        /// <summary>座標系を平衡移動させる。</summary>
+        /// <param name="offsetX">X移動量。</param>
+        /// <param name="offsetY">Y移動量。</param>
+        void SetTransform(float offsetX, float offsetY) override;
+
+        /// <summary>座標系を平衡移動させる。</summary>
+        /// <param name="matrix">移動量マトリックス。</param>
+        void SetTransform(Matrix matrix) override;
     };
 
     /// <summary>リソースクラス・描画実体（ソリッドブラシ用）</summary>
@@ -127,6 +185,18 @@ namespace VisualTree
         /// <summary>透明度を変更する。</summary>
         /// <param name="opacity">透明度（0 ～ 255）。</param>
         void SetOpacity(int opacity) override;
+
+        /// <summary>座標系を平衡移動させる。</summary>
+        void SetTransform() override;
+
+        /// <summary>座標系を平衡移動させる。</summary>
+        /// <param name="offsetX">X移動量。</param>
+        /// <param name="offsetY">Y移動量。</param>
+        void SetTransform(float offsetX, float offsetY) override;
+
+        /// <summary>座標系を平衡移動させる。</summary>
+        /// <param name="matrix">移動量マトリックス。</param>
+        void SetTransform(Matrix matrix) override;
     };
 
     /// <summary>リソースクラス・描画実体（COM）</summary>
@@ -186,5 +256,17 @@ namespace VisualTree
         /// <summary>透明度を変更する。</summary>
         /// <param name="opacity">透明度（0 ～ 255）。</param>
         void SetOpacity(int opacity) override {}
+
+        /// <summary>座標系を平衡移動させる。</summary>
+        void SetTransform() override {}
+
+        /// <summary>座標系を平衡移動させる。</summary>
+        /// <param name="offsetX">X移動量。</param>
+        /// <param name="offsetY">Y移動量。</param>
+        void SetTransform(float offsetX, float offsetY) override {}
+
+        /// <summary>座標系を平衡移動させる。</summary>
+        /// <param name="matrix">移動量マトリックス。</param>
+        void SetTransform(Matrix matrix) override {}
     };
 }

@@ -17,6 +17,8 @@ namespace VisualTree
         float _31, _32;
 
     public:
+        /// <summary>無変換のマトリクスを取得する。</summary>
+        /// <return>マトリクス。</return>
         static Matrix Identity()
         {
             Matrix res;
@@ -29,6 +31,8 @@ namespace VisualTree
             return res;
         }
 
+        /// <summary>マトリクスをDirect2D用のマトリクスに変換する。</summary>
+        /// <return>マトリクス。</return>
         D2D1_MATRIX_3X2_F Convert()
         {
             return D2D1::Matrix3x2F(
@@ -39,6 +43,37 @@ namespace VisualTree
                 this->_31,
                 this->_32
             );
+        }
+
+        /// <summary>移動マトリクスを取得する。</summary>
+        /// <param name="size">移動量。</param>
+        /// <return>マトリクス。</return>
+        static Matrix Translation(SizeF size)
+        {
+            Matrix res;
+            res._11 = 1.f;
+            res._12 = 0.f;
+            res._21 = 0.f;
+            res._22 = 1.f;
+            res._31 = size.Width;
+            res._32 = size.Height;
+            return res;
+        }
+
+        /// <summary>移動マトリクスを取得する。</summary>
+        /// <param name="x">X移動量。</param>
+        /// <param name="y">Y移動量。</param>
+        /// <return>マトリクス。</return>
+        static Matrix Translation(float x, float y)
+        {
+            Matrix res;
+            res._11 = 1.f;
+            res._12 = 0.f;
+            res._21 = 0.f;
+            res._22 = 1.f;
+            res._31 = x;
+            res._32 = y;
+            return res;
         }
     };
 }

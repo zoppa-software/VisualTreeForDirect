@@ -139,7 +139,7 @@ namespace VisualTree
 
             // ビットマップ描画ターゲットの解放
             bitmapTarget->Release();
-            return gcnew VisualResourceEntity2D(this, brush);
+            return gcnew VisualResourceEntityOfBrush(this, brush);
         }
     };
 }
