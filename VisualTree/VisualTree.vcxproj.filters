@@ -34,6 +34,9 @@
     <Filter Include="Resource\Bitmap">
       <UniqueIdentifier>{bf7e086e-a9f6-4646-96c4-d0aec43df39c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Enum">
+      <UniqueIdentifier>{8eae3c84-3518-4aae-ad1e-75cc5f9075ab}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -55,15 +58,6 @@
       <Filter>Render</Filter>
     </ClInclude>
     <ClInclude Include="VisualRenderTarget.h">
-      <Filter>Render</Filter>
-    </ClInclude>
-    <ClInclude Include="CapStyle.h">
-      <Filter>Render</Filter>
-    </ClInclude>
-    <ClInclude Include="LineJoin.h">
-      <Filter>Render</Filter>
-    </ClInclude>
-    <ClInclude Include="DashStyle.h">
       <Filter>Render</Filter>
     </ClInclude>
     <ClInclude Include="VisualResourceEntity.h">
@@ -90,41 +84,68 @@
     <ClInclude Include="VisualResourceOfTextFormat.h">
       <Filter>Resource\Text</Filter>
     </ClInclude>
-    <ClInclude Include="GammaParameter.h">
-      <Filter>Resource\Brush</Filter>
-    </ClInclude>
-    <ClInclude Include="ExtendModeParameter.h">
-      <Filter>Resource\Brush</Filter>
-    </ClInclude>
     <ClInclude Include="Ellipse.h">
       <Filter>Figure</Filter>
     </ClInclude>
     <ClInclude Include="VisualResourceOfLineGradientBrush.h">
       <Filter>Resource\Brush</Filter>
     </ClInclude>
-    <ClInclude Include="DWriteFontWeight.h">
-      <Filter>Resource\Text</Filter>
-    </ClInclude>
-    <ClInclude Include="DWriteFontStyle.h">
-      <Filter>Resource\Text</Filter>
-    </ClInclude>
-    <ClInclude Include="DWriteFontStretch.h">
-      <Filter>Resource\Text</Filter>
-    </ClInclude>
     <ClInclude Include="VisualResourceOfStrokeStyle.h">
-      <Filter>Resource\Brush</Filter>
-    </ClInclude>
-    <ClInclude Include="AntialiasMode.h">
-      <Filter>Render</Filter>
-    </ClInclude>
-    <ClInclude Include="BitmapInterpolationMode.h">
       <Filter>Resource\Brush</Filter>
     </ClInclude>
     <ClInclude Include="VisualResourceOfBitmap.h">
       <Filter>Resource\Bitmap</Filter>
     </ClInclude>
+    <ClInclude Include="CapStyle.h">
+      <Filter>Enum</Filter>
+    </ClInclude>
+    <ClInclude Include="AntialiasMode.h">
+      <Filter>Enum</Filter>
+    </ClInclude>
+    <ClInclude Include="DashStyle.h">
+      <Filter>Enum</Filter>
+    </ClInclude>
+    <ClInclude Include="LineJoin.h">
+      <Filter>Enum</Filter>
+    </ClInclude>
+    <ClInclude Include="BitmapInterpolationMode.h">
+      <Filter>Enum</Filter>
+    </ClInclude>
+    <ClInclude Include="ExtendModeParameter.h">
+      <Filter>Enum</Filter>
+    </ClInclude>
+    <ClInclude Include="GammaParameter.h">
+      <Filter>Enum</Filter>
+    </ClInclude>
+    <ClInclude Include="FigureBegin.h">
+      <Filter>Enum</Filter>
+    </ClInclude>
+    <ClInclude Include="FigureEnd.h">
+      <Filter>Enum</Filter>
+    </ClInclude>
+    <ClInclude Include="FillMode.h">
+      <Filter>Enum</Filter>
+    </ClInclude>
     <ClInclude Include="OpacityMaskContent.h">
-      <Filter>Resource\Bitmap</Filter>
+      <Filter>Enum</Filter>
+    </ClInclude>
+    <ClInclude Include="DWriteFontStretch.h">
+      <Filter>Enum</Filter>
+    </ClInclude>
+    <ClInclude Include="DWriteFontStyle.h">
+      <Filter>Enum</Filter>
+    </ClInclude>
+    <ClInclude Include="DWriteFontWeight.h">
+      <Filter>Enum</Filter>
+    </ClInclude>
+    <ClInclude Include="VisualLayer.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="LayerOptions.h">
+      <Filter>Enum</Filter>
+    </ClInclude>
+    <ClInclude Include="Matrix.h">
+      <Filter>Render</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

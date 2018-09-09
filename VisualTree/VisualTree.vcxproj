@@ -137,10 +137,16 @@
     <ClInclude Include="DWriteFontWeight.h" />
     <ClInclude Include="Ellipse.h" />
     <ClInclude Include="ExtendModeParameter.h" />
+    <ClInclude Include="FigureBegin.h" />
+    <ClInclude Include="FigureEnd.h" />
+    <ClInclude Include="FillMode.h" />
     <ClInclude Include="GammaParameter.h" />
+    <ClInclude Include="LayerOptions.h" />
     <ClInclude Include="LineJoin.h" />
+    <ClInclude Include="Matrix.h" />
     <ClInclude Include="OpacityMaskContent.h" />
     <ClInclude Include="resource1.h" />
+    <ClInclude Include="VisualLayer.h" />
     <ClInclude Include="VisualRenderTarget.h" />
     <ClInclude Include="VisualResourceEntity.h" />
     <ClInclude Include="VisualResourceEventArgs.h" />

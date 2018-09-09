@@ -12,4 +12,12 @@ namespace VisualTree
             ((ID2D1SolidColorBrush*)this->instance)->SetColor(clr);
         }
     }
+
+    /// <summary>透明度を変更する。</summary>
+    /// <param name="opacity">透明度（0 ～ 255）。</param>
+    void VisualResourceEntityOfSolidBrush::SetOpacity(int opacity) {
+        if (this->resource->GetType() == VisualResourceOfSolidColorBrush::typeid) {
+            ((ID2D1SolidColorBrush*)this->instance)->SetOpacity(opacity / 255.0f);
+        }
+    }
 }

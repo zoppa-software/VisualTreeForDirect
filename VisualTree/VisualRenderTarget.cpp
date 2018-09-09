@@ -61,8 +61,160 @@ namespace VisualTree
     }
 
     //-----------------------------------------------------------------------------
+    // ƒŒƒCƒ„[§Œä
+    //-----------------------------------------------------------------------------
+    VisualLayer ^ VisualRenderTarget::CreateLayer()
+    {
+        ID2D1Layer * layer = NULL;
+        HRESULT hr = this->renderTarget->CreateLayer(&layer);
+        return (SUCCEEDED(hr) ? gcnew VisualLayer(layer) : gcnew VisualLayer());
+    }
+
+    VisualLayer ^ VisualRenderTarget::CreateLayer(SizeF size)
+    {
+        ID2D1Layer * layer = NULL;
+        D2D1_SIZE_F sz = D2D1::SizeF(size.Width, size.Height);
+        HRESULT hr = this->renderTarget->CreateLayer(sz, &layer);
+        return (SUCCEEDED(hr) ? gcnew VisualLayer(layer) : gcnew VisualLayer());
+    }
+
+    void VisualRenderTarget::PushLayer(VisualLayer ^ layer)
+    {
+        D2D1_LAYER_PARAMETERS prm;
+        VisualLayer::LayerParameters ^ src = layer->Parameters;
+        prm.contentBounds = (src->contentBounds.Left == FLT_MIN &&
+                             src->contentBounds.Top == FLT_MIN &&
+                             src->contentBounds.Width == FLT_MAX &&
+                             src->contentBounds.Height == FLT_MAX) ?
+                             D2D1::InfiniteRect() :
+                             D2D1::RectF(src->contentBounds.Left,
+                                         src->contentBounds.Top,
+                                         src->contentBounds.Right,
+                                         src->contentBounds.Bottom);
+        prm.geometricMask = src->geometricMask != nullptr ?
+                            (ID2D1Geometry*)src->geometricMask->GetInstance() : NULL;
+        prm.maskAntialiasMode = (D2D1_ANTIALIAS_MODE)src->maskAntialiasMode;
+        prm.maskTransform = src->maskTransform.Convert();
+        prm.opacity = src->opacity;
+        prm.opacityBrush = src->opacityBrush != nullptr ?
+                           (ID2D1Brush*)src->opacityBrush->GetInstance() : NULL;
+        prm.layerOptions = (D2D1_LAYER_OPTIONS)src->layerOptions;
+        this->renderTarget->PushLayer(prm, layer->GetInstance());
+    }
+
+    void VisualRenderTarget::PopLayer()
+    {
+        this->renderTarget->PopLayer();
+    }
+
+    //-----------------------------------------------------------------------------
     // •`‰æAPI
     //-----------------------------------------------------------------------------
+    void VisualRenderTarget::DrawBitmap(VisualResourceEntity ^ bitmap, float opacity, BitmapInterpolationMode interpolationMode, RectangleF sourceRectangle)
+    {
+        if (bitmap != nullptr && bitmap->GetInstance() != NULL) {
+            D2D1_RECT_F src = D2D1::RectF((float)sourceRectangle.Left,
+                                          (float)sourceRectangle.Top,
+                                          (float)sourceRectangle.Right,
+                                          (float)sourceRectangle.Bottom);
+            this->renderTarget->DrawBitmap((ID2D1Bitmap*)bitmap->GetInstance(), NULL, opacity, (D2D1_BITMAP_INTERPOLATION_MODE)interpolationMode, &src);
+        }
+    }
+
+    void VisualRenderTarget::DrawBitmap(VisualResourceEntity ^ bitmap, RectangleF destinationRectangle, BitmapInterpolationMode interpolationMode, RectangleF sourceRectangle)
+    {
+        this->DrawBitmap(bitmap, destinationRectangle, 1, interpolationMode, sourceRectangle);
+    }
+
+    void VisualRenderTarget::DrawBitmap(VisualResourceEntity ^ bitmap, RectangleF destinationRectangle, float opacity, RectangleF sourceRectangle)
+    {
+        this->DrawBitmap(bitmap, destinationRectangle, opacity, BitmapInterpolationMode::BITMAP_INTERPOLATION_MODE_LINEAR, sourceRectangle);
+    }
+
+    void VisualRenderTarget::DrawBitmap(VisualResourceEntity ^ bitmap, RectangleF destinationRectangle, float opacity, BitmapInterpolationMode interpolationMode)
+    {
+        if (bitmap != nullptr && bitmap->GetInstance() != NULL) {
+            D2D1_RECT_F dest = D2D1::RectF((float)destinationRectangle.Left,
+                                           (float)destinationRectangle.Top,
+                                           (float)destinationRectangle.Right,
+                                           (float)destinationRectangle.Bottom);
+            this->renderTarget->DrawBitmap((ID2D1Bitmap*)bitmap->GetInstance(), &dest, opacity, (D2D1_BITMAP_INTERPOLATION_MODE)interpolationMode);
+        }
+    }
+
+    void VisualRenderTarget::DrawBitmap(VisualResourceEntity ^ bitmap, RectangleF destinationRectangle, float opacity, BitmapInterpolationMode interpolationMode, RectangleF sourceRectangle)
+    {
+        if (bitmap != nullptr && bitmap->GetInstance() != NULL) {
+            D2D1_RECT_F dest = D2D1::RectF((float)destinationRectangle.Left,
+                                           (float)destinationRectangle.Top,
+                                           (float)destinationRectangle.Right,
+                                           (float)destinationRectangle.Bottom);
+            D2D1_RECT_F src = D2D1::RectF((float)sourceRectangle.Left,
+                                          (float)sourceRectangle.Top,
+                                          (float)sourceRectangle.Right,
+                                          (float)sourceRectangle.Bottom);
+            this->renderTarget->DrawBitmap((ID2D1Bitmap*)bitmap->GetInstance(), &dest, opacity, (D2D1_BITMAP_INTERPOLATION_MODE)interpolationMode, &src);
+        }
+    }
+
+    void VisualRenderTarget::DrawBitmap(VisualResourceEntity ^ bitmap, RectangleF destinationRectangle, float opacity)
+    {
+        this->DrawBitmap(bitmap, destinationRectangle, opacity, BitmapInterpolationMode::BITMAP_INTERPOLATION_MODE_LINEAR);
+    }
+
+    void VisualRenderTarget::DrawBitmap(VisualResourceEntity ^ bitmap, RectangleF destinationRectangle, BitmapInterpolationMode interpolationMode)
+    {
+        this->DrawBitmap(bitmap, destinationRectangle, 1, interpolationMode);
+    }
+
+    void VisualRenderTarget::DrawBitmap(VisualResourceEntity ^ bitmap, float opacity, BitmapInterpolationMode interpolationMode)
+    {
+        if (bitmap != nullptr && bitmap->GetInstance() != NULL) {
+            this->renderTarget->DrawBitmap((ID2D1Bitmap*)bitmap->GetInstance(), NULL, opacity, (D2D1_BITMAP_INTERPOLATION_MODE)interpolationMode);
+        }
+    }
+
+    void VisualRenderTarget::DrawBitmap(VisualResourceEntity ^ bitmap, RectangleF destinationRectangle, RectangleF sourceRectangle)
+    {
+        this->DrawBitmap(bitmap, destinationRectangle, 1, BitmapInterpolationMode::BITMAP_INTERPOLATION_MODE_LINEAR, sourceRectangle);
+    }
+
+    void VisualRenderTarget::DrawBitmap(VisualResourceEntity ^ bitmap, float opacity, RectangleF sourceRectangle)
+    {
+        this->DrawBitmap(bitmap, opacity, BitmapInterpolationMode::BITMAP_INTERPOLATION_MODE_LINEAR, sourceRectangle);
+    }
+
+    void VisualRenderTarget::DrawBitmap(VisualResourceEntity ^ bitmap, BitmapInterpolationMode interpolationMode, RectangleF sourceRectangle)
+    {
+        this->DrawBitmap(bitmap, 1, interpolationMode, sourceRectangle);
+    }
+
+    void VisualRenderTarget::DrawBitmap(VisualResourceEntity ^ bitmap, RectangleF destinationRectangle)
+    {
+        this->DrawBitmap(bitmap, destinationRectangle, 1, BitmapInterpolationMode::BITMAP_INTERPOLATION_MODE_LINEAR);
+    }
+
+    void VisualRenderTarget::DrawBitmap(VisualResourceEntity ^ bitmap, float opacity)
+    {
+        this->DrawBitmap(bitmap, opacity, BitmapInterpolationMode::BITMAP_INTERPOLATION_MODE_LINEAR);
+    }
+
+    void VisualRenderTarget::DrawBitmap(VisualResourceEntity ^ bitmap, BitmapInterpolationMode interpolationMode)
+    {
+        this->DrawBitmap(bitmap, 1, interpolationMode);
+    }
+
+    void VisualRenderTarget::DrawBitmapSource(VisualResourceEntity ^ bitmap, RectangleF sourceRectangle)
+    {
+        this->DrawBitmap(bitmap, 1, BitmapInterpolationMode::BITMAP_INTERPOLATION_MODE_LINEAR, sourceRectangle);
+    }
+
+    void VisualRenderTarget::DrawBitmap(VisualResourceEntity ^ bitmap)
+    {
+        this->DrawBitmap(bitmap, 1, BitmapInterpolationMode::BITMAP_INTERPOLATION_MODE_LINEAR);
+    }
+
+
     void VisualRenderTarget::DrawEllipse(RectangleF rect, VisualResourceEntity ^ brush, float strokeWidth)
     {
         if (brush != nullptr) {

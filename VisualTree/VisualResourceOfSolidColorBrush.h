@@ -48,5 +48,12 @@ namespace VisualTree
             renderTarget->CreateSolidColorBrush(color, &brush);
             return gcnew VisualResourceEntityOfSolidBrush(this, brush);
         }
+
+        /// <summary>透明度を変更する。</summary>
+        /// <param name="opacity">透明度（0 ～ 255）。</param>
+        void SetOpacity(int opacity)
+        {
+            this->alpha = opacity / 255.0f;
+        }
 	};
 }

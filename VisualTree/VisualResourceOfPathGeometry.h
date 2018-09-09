@@ -5,6 +5,9 @@
 #include <dwrite.h>
 #include <wincodec.h>
 #include <vector>
+#include "FillMode.h"
+#include "FigureBegin.h"
+#include "FigureEnd.h"
 #include "VisualResource.h"
 
 using namespace System;
@@ -16,27 +19,6 @@ namespace VisualTree
 		: public VisualResource
 	{
 	public:
-		enum class FILL_MODE
-		{
-			FILL_MODE_ALTERNATE = 0,
-			FILL_MODE_WINDING = 1,
-			FILL_MODE_FORCE_DWORD = -1
-		};
-
-		enum class FIGURE_BEGIN
-		{
-			FIGURE_BEGIN_FILLED = 0,
-			FIGURE_BEGIN_HOLLOW = 1,
-			FIGURE_BEGIN_FORCE_DWORD = -1
-		};
-
-		enum class FIGURE_END
-		{
-			FIGURE_END_OPEN = 0,
-			FIGURE_END_CLOSED = 1,
-			FIGURE_END_FORCE_DWORD = -1
-		};
-
         enum class SWEEP_DIRECTION
         {
             SWEEP_DIRECTION_COUNTER_CLOCKWISE = 0,
@@ -146,21 +128,31 @@ namespace VisualTree
 			}
 
 		public:
-			void SetFillMode(FILL_MODE mode)
+			void SetFillMode(FillMode mode)
 			{
 				this->sink->SetFillMode((D2D1_FILL_MODE)mode);
 			}
 
-			void BeginFigure(PointF pos, FIGURE_BEGIN begin)
+			void BeginFigure(PointF pos, FigureBegin begin)
 			{
 				this->sink->BeginFigure(D2D1::Point2F(pos.X, pos.Y), (D2D1_FIGURE_BEGIN)begin);
+			}
+
+            void AddLine(float x, float y)
+			{
+                this->sink->AddLine(D2D1::Point2F(x, y));
+			}
+
+            void AddLine(PointF point)
+			{
+                this->sink->AddLine(D2D1::Point2F(point.X, point.Y));
 			}
 
 			void AddLines(System::Collections::Generic::IEnumerable<PointF>^ points)
 			{
                 std::vector<D2D1_POINT_2F> pos;
-                for each (PointF^ p in points) {
-                    pos.push_back(D2D1::Point2F(p->X, p->Y));
+                for each (PointF p in points) {
+                    pos.push_back(D2D1::Point2F(p.X, p.Y));
                 }
                 this->sink->AddLines(pos.data(), pos.size());
 			}
@@ -200,7 +192,7 @@ namespace VisualTree
                 this->sink->AddBeziers(segs.data(), segs.size());
             }
 
-			void EndFigure(FIGURE_END end)
+			void EndFigure(FigureEnd end)
 			{
 				this->sink->EndFigure((D2D1_FIGURE_END)end);
 			}

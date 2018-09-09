@@ -42,7 +42,11 @@ namespace VisualTree
 
         /// <summary>色設定を変更する。</summary>
         /// <param name="color">変更する色。</param>
-        virtual void SetColor(System::Drawing::Color color) {}
+        virtual void SetColor(System::Drawing::Color color) abstract;
+
+        /// <summary>透明度を変更する。</summary>
+        /// <param name="opacity">透明度（0 ～ 255）。</param>
+        virtual void SetOpacity(int opacity) abstract;
     };
 
     /// <summary>リソースクラス・描画実体。</summary>
@@ -98,6 +102,10 @@ namespace VisualTree
         /// <summary>色設定を変更する。</summary>
         /// <param name="color">変更する色。</param>
         void SetColor(System::Drawing::Color color) override {}
+
+        /// <summary>透明度を変更する。</summary>
+        /// <param name="opacity">透明度（0 ～ 255）。</param>
+        void SetOpacity(int opacity) override {}
     };
 
     /// <summary>リソースクラス・描画実体（ソリッドブラシ用）</summary>
@@ -115,6 +123,10 @@ namespace VisualTree
         /// <summary>色設定を変更する。</summary>
         /// <param name="color">変更する色。</param>
         void SetColor(System::Drawing::Color color) override;
+
+        /// <summary>透明度を変更する。</summary>
+        /// <param name="opacity">透明度（0 ～ 255）。</param>
+        void SetOpacity(int opacity) override;
     };
 
     /// <summary>リソースクラス・描画実体（COM）</summary>
@@ -170,5 +182,9 @@ namespace VisualTree
         /// <summary>色設定を変更する。</summary>
         /// <param name="color">変更する色。</param>
         void SetColor(System::Drawing::Color color) override {}
+
+        /// <summary>透明度を変更する。</summary>
+        /// <param name="opacity">透明度（0 ～ 255）。</param>
+        void SetOpacity(int opacity) override {}
     };
 }
