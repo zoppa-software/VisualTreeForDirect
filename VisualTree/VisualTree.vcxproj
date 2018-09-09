@@ -129,6 +129,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AntialiasMode.h" />
+    <ClInclude Include="ArcSize.h" />
     <ClInclude Include="BitmapInterpolationMode.h" />
     <ClInclude Include="CapStyle.h" />
     <ClInclude Include="DashStyle.h" />
@@ -146,6 +147,7 @@
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="OpacityMaskContent.h" />
     <ClInclude Include="resource1.h" />
+    <ClInclude Include="SweepDirection.h" />
     <ClInclude Include="VisualLayer.h" />
     <ClInclude Include="VisualRenderTarget.h" />
     <ClInclude Include="VisualResourceEntity.h" />

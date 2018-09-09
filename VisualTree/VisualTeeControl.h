@@ -25,14 +25,6 @@ using namespace System::Windows::Forms;
 using namespace System::Data;
 using namespace System::Drawing;
 
-// リソース解放マクロ
-#define SAFE_RELEASE(release)	{ \
-	if (release != NULL) {		\
-		release->Release();		\
-		release = NULL;			\
-	}							\
-}
-
 namespace VisualTree {
 
 	/// <summary>VisualTree描画用コントロール。</summary>
@@ -40,15 +32,24 @@ namespace VisualTree {
 		: public System::Windows::Forms::UserControl
 	{
     public:
+        /// <summary>描画処理イベントデリゲート。</summary>
+        /// <param name="sender">イベント発行元。</param>
+        /// <param name="e">イベントオブジェクト。</param>
         delegate void VisualRenderEventHandler(Object ^ sender, VisualRenderEventArgs ^ e);
+
+        /// <summary>描画リソースの初期化イベントデリゲート。</summary>
+        /// <param name="sender">イベント発行元。</param>
+        /// <param name="e">イベントオブジェクト。</param>
         delegate void VisualResourceEventHandler(Object ^ sender, EventArgs ^ e);
 
+        /// <summary>描画処理を行う。</summary>
         [Category("VisualTree 設定")]
-        [Description("描画処理を記述する")]
+        [Description("描画処理を行う")]
         event VisualRenderEventHandler ^ VisualRenderEvent;
 
+        /// <summary>描画リソースの初期化を行う。</summary>
         [Category("VisualTree 設定")]
-        [Description("描画リソースの初期化処理を実装する")]
+        [Description("描画リソースの初期化を行う")]
         event VisualResourceEventHandler ^ VisualInitialResourceEvent;
 
 	private:
@@ -61,63 +62,59 @@ namespace VisualTree {
         // レンダーターゲット
 		ID2D1DCRenderTarget * renderTarget;
 
+        // リソースリスト（登録順）
 		List<VisualResource ^>^ srcres;
+
+        // リソースリスト（テーブル）
 		VisualResources ^ resources;
 
-        /// <summary>必要なデザイナー変数。</summary>
+        // 必要なデザイナー変数
 		System::ComponentModel::Container ^components;
 
 	public:
 		/// <summary>コンストラクタ。</summary>
-		VisualTeeControl()
-			: factory(NULL), writeFactory(NULL), renderTarget(NULL)
-		{
-			InitializeComponent();
-
-			CreateDeviceIndependentResources();
-			this->srcres = gcnew List<VisualResource^>();
-			this->resources = gcnew VisualResources();
-		}
+        VisualTeeControl();
 
 	protected:
-		/// <summary>使用中のリソースをすべてクリーンアップする。</summary>
-		~VisualTeeControl() {
-			if (components) {
-				delete components;
-			}
-			SAFE_RELEASE(this->factory);
-            SAFE_RELEASE(this->writeFactory);
-			SAFE_RELEASE(this->renderTarget);
-		    for each(VisualResourceEntity ^ ins in this->resources->Values) {
-			    ins->ForceRelease();
-		    }
-		}
+		/// <summary>デストラクタ。</summary>
+        virtual ~VisualTeeControl();
+
+        /// <summary>ファイナライザ。</summary>
+        !VisualTeeControl();
 
     protected:
-        void OnLoad(EventArgs ^ e) override
-        {
-            this->OnInitialResource(e);
-        }
+        //-------------------------------------------------------------------------
+        // イベント処理
+        //-------------------------------------------------------------------------
+        /// <summary>ロードイベント。</summary>
+        /// <param name="m">イベントオブジェクト。</param>
+        void OnLoad(EventArgs ^ e) override;
 
+        /// <summary>サイズチェンジイベント。</summary>
+        /// <param name="m">イベントオブジェクト。</param>
+        void OnSizeChanged(EventArgs ^ e) override;
+
+        /// <summary>ウィンドウプロシージャ。</summary>
+        /// <param name="m">メッセージ構造体。</param>
 		virtual void WndProc(Message% m) override;
 
     private:
-
-#pragma region Windows Form Designer generated code
-		void InitializeComponent(void)
-		{
-			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-		}
-#pragma endregion
+        /// <summary>コンポーネント初期化処理。</summary>
+        void InitializeComponent();
 
         //-------------------------------------------------------------------------
         // Direct2Dリソースサイクル
         //-------------------------------------------------------------------------
+        /// <summary>デバイス非依存リソースを作成する。</summary>
 		HRESULT CreateDeviceIndependentResources();
+
+        /// <summary>デバイス依存リソースを作成する。</summary>
+        /// <return>実行結果。</return>
 		HRESULT CreateDeviceResources();
 
         /// <summary>描画を開始する。</summary>
         /// <param name="ps">描画範囲を取得する。</param>
+        /// <return>実行結果。</return>
 		HRESULT RenderStart(const PAINTSTRUCT &ps);
 
         /// <summary>デバイスロスト向け、リソース解放処理。</summary>

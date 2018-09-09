@@ -85,8 +85,8 @@ namespace GeometriesExample
                 sink.AddArc(new VisualResourceOfPathGeometry.ArcSegment(new PointF(440, 255),
                                                                         new SizeF(85, 85),
                                                                         0,
-                                                                        VisualResourceOfPathGeometry.SWEEP_DIRECTION.SWEEP_DIRECTION_CLOCKWISE,
-                                                                        VisualResourceOfPathGeometry.ARC_SIZE.ARC_SIZE_SMALL));
+                                                                        SweepDirection.SWEEP_DIRECTION_CLOCKWISE,
+                                                                        ArcSize.ARC_SIZE_SMALL));
                 sink.EndFigure(FigureEnd.FIGURE_END_OPEN);
 
                 sink.BeginFigure(new PointF(299, 182), FigureBegin.FIGURE_BEGIN_HOLLOW);

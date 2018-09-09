@@ -1,9 +1,93 @@
 #include "stdafx.h"
+
+// リソース解放マクロ
+#define SAFE_RELEASE(release)	{ \
+	if (release != NULL) {		\
+		release->Release();		\
+		release = NULL;			\
+	}							\
+}
+
 #include "VisualRenderTarget.h"
 #include "VisualTeeControl.h"
 
-namespace VisualTree {
+namespace VisualTree
+{
+    /// <summary>コンストラクタ。</summary>
+    VisualTeeControl::VisualTeeControl()
+        : factory(NULL), writeFactory(NULL), renderTarget(NULL)
+    {
+        InitializeComponent();
 
+        this->CreateDeviceIndependentResources();
+        this->srcres = gcnew List<VisualResource^>();
+        this->resources = gcnew VisualResources();
+    }
+
+    /// <summary>使用中のリソースをすべてクリーンアップする。</summary>
+	VisualTeeControl::~VisualTeeControl()
+    {
+		if (components) {
+			delete components;
+		}
+		SAFE_RELEASE(this->factory);
+        SAFE_RELEASE(this->writeFactory);
+		SAFE_RELEASE(this->renderTarget);
+	    for each(VisualResourceEntity ^ ins in this->resources->Values) {
+		    ins->ForceRelease();
+	    }
+	}
+
+    VisualTeeControl::!VisualTeeControl()
+    {
+        this->~VisualTeeControl();
+    }
+
+    //-------------------------------------------------------------------------
+    // イベント処理
+    //-------------------------------------------------------------------------
+    void VisualTeeControl::OnLoad(EventArgs ^ e)
+    {
+        this->OnInitialResource(e);
+    }
+
+    void VisualTeeControl::OnSizeChanged(EventArgs ^ e)
+    {
+        if (this->renderTarget) {
+            this->Invalidate();
+        }
+    }
+
+    // ウィンドウプロシージャ
+	void VisualTeeControl::WndProc(Message% message)
+	{
+        switch (message.Msg)
+        {
+        case WM_PAINT:
+        case WM_DISPLAYCHANGE:
+        {
+            PAINTSTRUCT ps;
+            ::BeginPaint((HWND)message.HWnd.ToPointer(), &ps);
+            this->RenderStart(ps);
+            ::EndPaint((HWND)message.HWnd.ToPointer(), &ps);
+        }
+        break;
+
+        default:
+            Control::WndProc(message);
+            break;
+        }
+	}
+
+    void VisualTeeControl::InitializeComponent()
+    {
+        this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+    }
+
+    //-------------------------------------------------------------------------
+    // Direct2Dリソースサイクル
+    //-------------------------------------------------------------------------
+    // デバイス非依存リソースを作成
 	HRESULT VisualTeeControl::CreateDeviceIndependentResources()
 	{
         HRESULT res;
@@ -27,13 +111,14 @@ namespace VisualTree {
 		return res;
 	}
 
+    // デバイス依存リソースを作成
 	HRESULT VisualTeeControl::CreateDeviceResources()
 	{
 		HRESULT hr = S_OK;
 
 		if (this->renderTarget == NULL && factory != NULL)
 		{
-			// Create a DC render target.
+            // プロパティ設定
 			D2D1_RENDER_TARGET_PROPERTIES props = D2D1::RenderTargetProperties(
 				D2D1_RENDER_TARGET_TYPE_DEFAULT,
 				D2D1::PixelFormat(
@@ -45,37 +130,19 @@ namespace VisualTree {
 				D2D1_FEATURE_LEVEL_DEFAULT
 				);
 
+            // レンダーターゲットを生成
 			ID2D1DCRenderTarget * dCRT;
 			hr = factory->CreateDCRenderTarget(&props, &dCRT);
 			this->renderTarget = dCRT;
 			if (!SUCCEEDED(hr)) { return hr; }
 
+            // リソースを実体に変換
 			for each (VisualResource ^ res in this->srcres) {
 				this->resources->Add(res->Name, res->ChangeEntity(this->renderTarget));
 			}
 		}
 
 		return hr;
-	}
-
-	void VisualTeeControl::WndProc(Message% message)
-	{
-        switch (message.Msg)
-        {
-        case WM_PAINT:
-        case WM_DISPLAYCHANGE:
-        {
-            PAINTSTRUCT ps;
-            BeginPaint((HWND)message.HWnd.ToPointer(), &ps);
-            this->RenderStart(ps);
-            EndPaint((HWND)message.HWnd.ToPointer(), &ps);
-        }
-        break;
-
-        default:
-            Control::WndProc(message);
-            break;
-        }
 	}
 
     // 描画処理を実行する

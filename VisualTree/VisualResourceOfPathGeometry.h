@@ -5,9 +5,11 @@
 #include <dwrite.h>
 #include <wincodec.h>
 #include <vector>
+#include "ArcSize.h"
 #include "FillMode.h"
 #include "FigureBegin.h"
 #include "FigureEnd.h"
+#include "SweepDirection.h"
 #include "VisualResource.h"
 
 using namespace System;
@@ -18,21 +20,6 @@ namespace VisualTree
 	public ref class VisualResourceOfPathGeometry
 		: public VisualResource
 	{
-	public:
-        enum class SWEEP_DIRECTION
-        {
-            SWEEP_DIRECTION_COUNTER_CLOCKWISE = 0,
-            SWEEP_DIRECTION_CLOCKWISE = 1,
-            SWEEP_DIRECTION_FORCE_DWORD = -1
-        };
-
-        enum class ARC_SIZE
-        {
-            ARC_SIZE_SMALL = 0,
-            ARC_SIZE_LARGE = 1,
-            ARC_SIZE_FORCE_DWORD = -1
-        };
-
 	public:
         ref class BezierSegment
         {
@@ -68,13 +55,13 @@ namespace VisualTree
             PointF  point;
             SizeF   size;
             float   rotation;
-            SWEEP_DIRECTION sweep;
-            ARC_SIZE        arc;
+            SweepDirection sweep;
+            ArcSize        arc;
 
         public:
             ArcSegment() {}
 
-            ArcSegment(PointF point, SizeF size, float rotationAngle, SWEEP_DIRECTION sweepDirection, ARC_SIZE arcSize)
+            ArcSegment(PointF point, SizeF size, float rotationAngle, SweepDirection sweepDirection, ArcSize arcSize)
                 : point(point), size(size), rotation(rotationAngle), sweep(sweepDirection), arc(arcSize) {}
 
         public:
@@ -93,14 +80,14 @@ namespace VisualTree
                 void set(float rotation) { this->rotation = rotation; }
             }
 
-            property SWEEP_DIRECTION SweepDirection {
-                SWEEP_DIRECTION get() { return this->sweep; }
-                void set(SWEEP_DIRECTION rotation) { this->sweep = rotation; }
+            property VisualTree::SweepDirection SweepDirection {
+                VisualTree::SweepDirection get() { return this->sweep; }
+                void set(VisualTree::SweepDirection rotation) { this->sweep = rotation; }
             }
 
-            property ARC_SIZE ArcSize {
-                ARC_SIZE get() { return this->arc; }
-                void set(ARC_SIZE rotation) { this->arc = rotation; }
+            property VisualTree::ArcSize ArcSize {
+                VisualTree::ArcSize get() { return this->arc; }
+                void set(VisualTree::ArcSize rotation) { this->arc = rotation; }
             }
         };
 

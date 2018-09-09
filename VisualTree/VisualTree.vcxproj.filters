@@ -150,6 +150,12 @@
     <ClInclude Include="VisualResourceOfRectangleGeometry.h">
       <Filter>Resource\Geometry</Filter>
     </ClInclude>
+    <ClInclude Include="SweepDirection.h">
+      <Filter>Enum</Filter>
+    </ClInclude>
+    <ClInclude Include="ArcSize.h">
+      <Filter>Enum</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp">
