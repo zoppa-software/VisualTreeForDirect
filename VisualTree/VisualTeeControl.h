@@ -14,6 +14,7 @@
 #include "VisualResourceOfLineGradientBrush.h"
 #include "VisualResourceOfRadialGradientBrush.h"
 #include "VisualResourceOfTextFormat.h"
+#include "VisualResourceOfStrokeStyle.h"
 
 using namespace System;
 using namespace System::ComponentModel;
@@ -186,5 +187,10 @@ namespace VisualTree {
         /// <param name="name">リソース名。</param>
         /// <return>リソース。</return>
         VisualResourceOfTextFormat ^ CreateTextFormat(String ^ name);
+
+        /// <summary>ストロークスタイルを作成する。</summary>
+        /// <param name="name">リソース名。</param>
+        /// <return>リソース。</return>
+        VisualResourceOfStrokeStyle ^ CreateStrokeStyle(String ^ name);
 	};
 }

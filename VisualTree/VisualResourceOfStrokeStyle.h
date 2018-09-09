@@ -73,15 +73,35 @@ namespace VisualTree
         /// <param name="factory">描画ファクトリ。</param>
         VisualResourceOfStrokeStyle(String ^ name, ID2D1Factory * factory)
             : VisualResource(name), factory(factory), strokeStyle(NULL)
-        {
-            this->dashes = gcnew List<float>();
+        {      
             this->properties = gcnew StrokeStyleProperties();
+            this->dashes = gcnew List<float>();
         }
 
         /// <summary>デストラクタ。</summary>
         virtual ~VisualResourceOfStrokeStyle() {}
 
     public:
+        /// <summary>ダッシュパターンを消去する。</summary>
+        void DashesClear()
+        {
+            this->dashes->Clear();
+        }
+
+        /// <summary>ダッシュパターンに追加する。</summary>
+        /// <param name="value">追加する値。</param>
+        void DashesAdd(float value)
+        {
+            this->dashes->Add(value);
+        }
+
+        /// <summary>ダッシュパターンに追加する。</summary>
+        /// <param name="values">追加する値リスト。</param>
+        void DashesAddRange(System::Collections::Generic::IEnumerable<float>^ values)
+        {
+            this->dashes->AddRange(values);
+        }
+
         /// <summary>リソースを実体に変換する。</summary>
         /// <param name="name">レンダーターゲット。</param>
         /// <return>リソース実体。</return>

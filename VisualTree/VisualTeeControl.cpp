@@ -215,4 +215,11 @@ namespace VisualTree {
         this->srcres->Add(res);
         return res;
     }
+
+    VisualResourceOfStrokeStyle ^ VisualTeeControl::CreateStrokeStyle(String ^ name)
+    {
+        VisualResourceOfStrokeStyle ^ res = gcnew VisualResourceOfStrokeStyle(name, this->factory);
+        this->srcres->Add(res);
+        return res;
+    }
 }
