@@ -49,6 +49,15 @@ namespace VisualTree
             return gcnew VisualResourceEntityOfSolidBrush(this, brush);
         }
 
+        /// <summary>色を変更する。</summary>
+        /// <param name="color">色。</param>
+        void SetColor(Color color)
+        {
+            this->red = red / 255.0f;
+            this->green = green / 255.0f;
+            this->blue = blue / 255.0f;
+        }
+
         /// <summary>透明度を変更する。</summary>
         /// <param name="opacity">透明度（0 ～ 255）。</param>
         void SetOpacity(int opacity)

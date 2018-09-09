@@ -23,27 +23,70 @@ namespace VisualTree
         /// <summary>レイヤー リソースのコンテンツの境界、マスク情報、不透明度の設定、およびその他のオプションを格納します。</summary>
         ref class LayerParameters
         {
-        public:
-            /// <summary>レイヤーのコンテンツの境界。</summary>
+        private:
+            // レイヤーのコンテンツの境界
             RectangleF contentBounds;
 
-            /// <summary>ジオメトリ マスクは、レンダー ターゲットに統合されているレイヤーの領域を指定します。</summary>
+            // ジオメトリマスクは、レンダー ターゲットに統合されているレイヤーの領域を指定します
             VisualResourceEntity ^ geometricMask;
 
-            /// <summary>アンチエイリアシング モードを指定する値。</summary>
+            // アンチエイリアシングモードを指定する値
             AntialiasMode maskAntialiasMode;
 
-            /// <summary>レイヤーの作成時にジオメトリ マスクに適用される変換を指定する値。</summary>
+            // レイヤーの作成時にジオメトリマスクに適用される変換を指定する値
             Matrix maskTransform;
 
-            /// <summary>ターゲットに統合されるときにレイヤー内のすべてのリソースに一律に適用される不透明度の値。</summary>
+            // ターゲットに統合されるときにレイヤー内のすべてのリソースに一律に適用される不透明度の値
             float opacity;
 
-            /// <summary>レイヤーの不透明度の変更に使用されるブラシ。</summary>
+            // レイヤーの不透明度の変更に使用されるブラシ
             VisualResourceEntity ^ opacityBrush;
 
-            /// <summary>レイヤーが ClearType アンチエイリアシングを使用してテキストをレンダリングするかどうかを指定する値。</summary>
+            // レイヤーが ClearType アンチエイリアシングを使用してテキストをレンダリングするかどうかを指定する値
             LayerOptions layerOptions;
+
+        public:
+            /// <summary>レイヤーのコンテンツの境界を設定、取得する。</summary>
+            property RectangleF ContentBounds {
+                RectangleF get() { return this->contentBounds; }
+                void set(RectangleF value) { this->contentBounds = value; }
+            }
+
+            /// <summary>ジオメトリマスクを設定、取得する。</summary>
+            property VisualResourceEntity ^ GeometricMask {
+                VisualResourceEntity ^ get() { return this->geometricMask; }
+                void set(VisualResourceEntity ^ value) { this->geometricMask = value; }
+            }
+
+            /// <summary>アンチエイリアシングモードを設定、取得する。</summary>
+            property AntialiasMode MaskAntialiasMode {
+                AntialiasMode get() { return this->maskAntialiasMode; }
+                void set(AntialiasMode value) { this->maskAntialiasMode = value; }
+            }
+
+            /// <summary>レイヤーの作成時にジオメトリマスクを設定、取得する。</summary>
+            property Matrix MaskTransform {
+                Matrix get() { return this->maskTransform; }
+                void set(Matrix value) { this->maskTransform = value; }
+            }
+
+            /// <summary>レイヤーが ClearType アンチエイリアシングを使用してテキストをレンダリングするかどうかを指定する値を設定、取得する。</summary>
+            property float Opacity {
+                float get() { return this->opacity; }
+                void set(float value) { this->opacity = value; }
+            }
+
+            /// <summary>レイヤーの不透明度の変更に使用されるブラシを設定、取得する。</summary>
+            property VisualResourceEntity ^ OpacityBrush {
+                VisualResourceEntity ^ get() { return this->opacityBrush; }
+                void set(VisualResourceEntity ^ value) { this->opacityBrush = value; }
+            }
+
+            /// <summary>不透明度の値を設定、取得する。</summary>
+            property VisualTree::LayerOptions LayerOptions {
+                VisualTree::LayerOptions get() { return this->layerOptions; }
+                void set(VisualTree::LayerOptions value) { this->layerOptions = value; }
+            }
 
         public:
             /// <summary>コンストラクタ。</summary>
@@ -54,7 +97,7 @@ namespace VisualTree
                   maskTransform(Matrix::Identity()),
                   opacity(1),
                   opacityBrush(nullptr),
-                  layerOptions(LayerOptions::D2D1_LAYER_OPTIONS_NONE)
+                  layerOptions(VisualTree::LayerOptions::D2D1_LAYER_OPTIONS_NONE)
             {}
         };
 

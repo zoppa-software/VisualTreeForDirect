@@ -222,4 +222,11 @@ namespace VisualTree {
         this->srcres->Add(res);
         return res;
     }
+
+    VisualResourceOfRectangleGeometry ^ VisualTeeControl::CreateRectangleGeometry(String ^ name, RectangleF rectangle)
+    {
+        VisualResourceOfRectangleGeometry ^ res = gcnew VisualResourceOfRectangleGeometry(name, this->factory, rectangle);
+        this->srcres->Add(res);
+        return res;
+    }
 }

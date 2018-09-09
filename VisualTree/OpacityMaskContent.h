@@ -2,7 +2,7 @@
 
 namespace VisualTree
 {
-    /// <summary>不透明マスクの内容を指定します。。</summary>
+    /// <summary>不透明マスクの内容を指定します。</summary>
     public enum class OpacityMaskContent
     {
         /// <summary>不透明度マスクにはグラフィックスが含まれています。不透明度マスクはガンマ 2.2 の色空間でブレンドされます。</summary>

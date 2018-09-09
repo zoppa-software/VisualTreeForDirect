@@ -44,170 +44,154 @@ namespace GeometriesExample
             }
 
             var strokeStyleSolidMiter = this.mainControl.CreateStrokeStyle("strokeStyleSolidMiter");
-            strokeStyleSolidMiter.Properties.startCap = CapStyle.CAP_STYLE_FLAT;
-            strokeStyleSolidMiter.Properties.endCap = CapStyle.CAP_STYLE_FLAT;
-            strokeStyleSolidMiter.Properties.dashCap = CapStyle.CAP_STYLE_FLAT;
-            strokeStyleSolidMiter.Properties.lineJoin = LineJoin.LINE_JOIN_MITER;
-            strokeStyleSolidMiter.Properties.miterLimit = 2;
-            strokeStyleSolidMiter.Properties.dashStyle = DashStyle.DASH_STYLE_SOLID;
-            strokeStyleSolidMiter.Properties.dashOffset = 0;
+            strokeStyleSolidMiter.Properties.StartCap = CapStyle.CAP_STYLE_FLAT;
+            strokeStyleSolidMiter.Properties.EndCap = CapStyle.CAP_STYLE_FLAT;
+            strokeStyleSolidMiter.Properties.DashCap = CapStyle.CAP_STYLE_FLAT;
+            strokeStyleSolidMiter.Properties.LineJoin = LineJoin.LINE_JOIN_MITER;
+            strokeStyleSolidMiter.Properties.MiterLimit = 2;
+            strokeStyleSolidMiter.Properties.DashStyle = DashStyle.DASH_STYLE_SOLID;
+            strokeStyleSolidMiter.Properties.DashOffset = 0;
 
             var strokeStyleSolidBevel = this.mainControl.CreateStrokeStyle("strokeStyleSolidBevel");
-            strokeStyleSolidBevel.Properties.startCap = CapStyle.CAP_STYLE_FLAT;
-            strokeStyleSolidBevel.Properties.endCap = CapStyle.CAP_STYLE_FLAT;
-            strokeStyleSolidBevel.Properties.dashCap = CapStyle.CAP_STYLE_FLAT;
-            strokeStyleSolidBevel.Properties.lineJoin = LineJoin.LINE_JOIN_BEVEL;
-            strokeStyleSolidBevel.Properties.miterLimit = 2;
-            strokeStyleSolidBevel.Properties.dashStyle = DashStyle.DASH_STYLE_SOLID;
-            strokeStyleSolidBevel.Properties.dashOffset = 0;
+            strokeStyleSolidBevel.Properties.StartCap = CapStyle.CAP_STYLE_FLAT;
+            strokeStyleSolidBevel.Properties.EndCap = CapStyle.CAP_STYLE_FLAT;
+            strokeStyleSolidBevel.Properties.DashCap = CapStyle.CAP_STYLE_FLAT;
+            strokeStyleSolidBevel.Properties.LineJoin = LineJoin.LINE_JOIN_BEVEL;
+            strokeStyleSolidBevel.Properties.MiterLimit = 2;
+            strokeStyleSolidBevel.Properties.DashStyle = DashStyle.DASH_STYLE_SOLID;
+            strokeStyleSolidBevel.Properties.DashOffset = 0;
 
             var strokeStyleSolidMiterOrBevel = this.mainControl.CreateStrokeStyle("strokeStyleSolidMiterOrBevel");
-            strokeStyleSolidMiterOrBevel.Properties.startCap = CapStyle.CAP_STYLE_FLAT;
-            strokeStyleSolidMiterOrBevel.Properties.endCap = CapStyle.CAP_STYLE_FLAT;
-            strokeStyleSolidMiterOrBevel.Properties.dashCap = CapStyle.CAP_STYLE_FLAT;
-            strokeStyleSolidMiterOrBevel.Properties.lineJoin = LineJoin.LINE_JOIN_MITER_OR_BEVEL;
-            strokeStyleSolidMiterOrBevel.Properties.miterLimit = 2;
-            strokeStyleSolidMiterOrBevel.Properties.dashStyle = DashStyle.DASH_STYLE_SOLID;
-            strokeStyleSolidMiterOrBevel.Properties.dashOffset = 0;
+            strokeStyleSolidMiterOrBevel.Properties.StartCap = CapStyle.CAP_STYLE_FLAT;
+            strokeStyleSolidMiterOrBevel.Properties.EndCap = CapStyle.CAP_STYLE_FLAT;
+            strokeStyleSolidMiterOrBevel.Properties.DashCap = CapStyle.CAP_STYLE_FLAT;
+            strokeStyleSolidMiterOrBevel.Properties.LineJoin = LineJoin.LINE_JOIN_MITER_OR_BEVEL;
+            strokeStyleSolidMiterOrBevel.Properties.MiterLimit = 2;
+            strokeStyleSolidMiterOrBevel.Properties.DashStyle = DashStyle.DASH_STYLE_SOLID;
+            strokeStyleSolidMiterOrBevel.Properties.DashOffset = 0;
 
             var strokeStyleSolidRoundwRoundCap = this.mainControl.CreateStrokeStyle("strokeStyleSolidRoundwRoundCap");
-            strokeStyleSolidRoundwRoundCap.Properties.startCap = CapStyle.CAP_STYLE_ROUND;
-            strokeStyleSolidRoundwRoundCap.Properties.endCap = CapStyle.CAP_STYLE_ROUND;
-            strokeStyleSolidRoundwRoundCap.Properties.dashCap = CapStyle.CAP_STYLE_FLAT;
-            strokeStyleSolidRoundwRoundCap.Properties.lineJoin = LineJoin.LINE_JOIN_ROUND;
-            strokeStyleSolidRoundwRoundCap.Properties.miterLimit = 2;
-            strokeStyleSolidRoundwRoundCap.Properties.dashStyle = DashStyle.DASH_STYLE_SOLID;
-            strokeStyleSolidRoundwRoundCap.Properties.dashOffset = 0;
+            strokeStyleSolidRoundwRoundCap.Properties.StartCap = CapStyle.CAP_STYLE_ROUND;
+            strokeStyleSolidRoundwRoundCap.Properties.EndCap = CapStyle.CAP_STYLE_ROUND;
+            strokeStyleSolidRoundwRoundCap.Properties.DashCap = CapStyle.CAP_STYLE_FLAT;
+            strokeStyleSolidRoundwRoundCap.Properties.LineJoin = LineJoin.LINE_JOIN_ROUND;
+            strokeStyleSolidRoundwRoundCap.Properties.MiterLimit = 2;
+            strokeStyleSolidRoundwRoundCap.Properties.DashStyle = DashStyle.DASH_STYLE_SOLID;
+            strokeStyleSolidRoundwRoundCap.Properties.DashOffset = 0;
 
             var strokeStyleSolidRoundwFlatCap = this.mainControl.CreateStrokeStyle("strokeStyleSolidRoundwFlatCap");
-            strokeStyleSolidRoundwFlatCap.Properties.startCap = CapStyle.CAP_STYLE_FLAT;
-            strokeStyleSolidRoundwFlatCap.Properties.endCap = CapStyle.CAP_STYLE_FLAT;
-            strokeStyleSolidRoundwFlatCap.Properties.dashCap = CapStyle.CAP_STYLE_FLAT;
-            strokeStyleSolidRoundwFlatCap.Properties.lineJoin = LineJoin.LINE_JOIN_ROUND;
-            strokeStyleSolidRoundwFlatCap.Properties.miterLimit = 2;
-            strokeStyleSolidRoundwFlatCap.Properties.dashStyle = DashStyle.DASH_STYLE_SOLID;
-            strokeStyleSolidRoundwFlatCap.Properties.dashOffset = 0;
+            strokeStyleSolidRoundwFlatCap.Properties.StartCap = CapStyle.CAP_STYLE_FLAT;
+            strokeStyleSolidRoundwFlatCap.Properties.EndCap = CapStyle.CAP_STYLE_FLAT;
+            strokeStyleSolidRoundwFlatCap.Properties.DashCap = CapStyle.CAP_STYLE_FLAT;
+            strokeStyleSolidRoundwFlatCap.Properties.LineJoin = LineJoin.LINE_JOIN_ROUND;
+            strokeStyleSolidRoundwFlatCap.Properties.MiterLimit = 2;
+            strokeStyleSolidRoundwFlatCap.Properties.DashStyle = DashStyle.DASH_STYLE_SOLID;
+            strokeStyleSolidRoundwFlatCap.Properties.DashOffset = 0;
 
             var strokeStyleSolidRoundwSquareCap = this.mainControl.CreateStrokeStyle("strokeStyleSolidRoundwSquareCap");
-            strokeStyleSolidRoundwSquareCap.Properties.startCap = CapStyle.CAP_STYLE_SQUARE;
-            strokeStyleSolidRoundwSquareCap.Properties.endCap = CapStyle.CAP_STYLE_SQUARE;
-            strokeStyleSolidRoundwSquareCap.Properties.dashCap = CapStyle.CAP_STYLE_FLAT;
-            strokeStyleSolidRoundwSquareCap.Properties.lineJoin = LineJoin.LINE_JOIN_ROUND;
-            strokeStyleSolidRoundwSquareCap.Properties.miterLimit = 2;
-            strokeStyleSolidRoundwSquareCap.Properties.dashStyle = DashStyle.DASH_STYLE_SOLID;
-            strokeStyleSolidRoundwSquareCap.Properties.dashOffset = 0;
+            strokeStyleSolidRoundwSquareCap.Properties.StartCap = CapStyle.CAP_STYLE_SQUARE;
+            strokeStyleSolidRoundwSquareCap.Properties.EndCap = CapStyle.CAP_STYLE_SQUARE;
+            strokeStyleSolidRoundwSquareCap.Properties.DashCap = CapStyle.CAP_STYLE_FLAT;
+            strokeStyleSolidRoundwSquareCap.Properties.LineJoin = LineJoin.LINE_JOIN_ROUND;
+            strokeStyleSolidRoundwSquareCap.Properties.MiterLimit = 2;
+            strokeStyleSolidRoundwSquareCap.Properties.DashStyle = DashStyle.DASH_STYLE_SOLID;
+            strokeStyleSolidRoundwSquareCap.Properties.DashOffset = 0;
 
-            //if (SUCCEEDED(hr))
-            //{
-            //    hr = m_pD2DFactory->CreateStrokeStyle(
-            //        D2D1::StrokeStyleProperties(
-            //            D2D1_CAP_STYLE_TRIANGLE,
-            //            D2D1_CAP_STYLE_TRIANGLE,
-            //            D2D1_CAP_STYLE_FLAT,
-            //            D2D1_LINE_JOIN_ROUND,
-            //            2.0f,
-            //            D2D1_DASH_STYLE_SOLID,
-            //            0.0f),
-            //        NULL,
-            //        0,
-            //        &m_pStrokeStyleSolidRoundwTriangleCap
-            //        );
-            //}
             var strokeStyleSolidRoundwTriangleCap = this.mainControl.CreateStrokeStyle("strokeStyleSolidRoundwTriangleCap");
-            strokeStyleSolidRoundwTriangleCap.Properties.startCap = CapStyle.CAP_STYLE_TRIANGLE;
-            strokeStyleSolidRoundwTriangleCap.Properties.endCap = CapStyle.CAP_STYLE_TRIANGLE;
-            strokeStyleSolidRoundwTriangleCap.Properties.dashCap = CapStyle.CAP_STYLE_FLAT;
-            strokeStyleSolidRoundwTriangleCap.Properties.lineJoin = LineJoin.LINE_JOIN_ROUND;
-            strokeStyleSolidRoundwTriangleCap.Properties.miterLimit = 2;
-            strokeStyleSolidRoundwTriangleCap.Properties.dashStyle = DashStyle.DASH_STYLE_SOLID;
-            strokeStyleSolidRoundwTriangleCap.Properties.dashOffset = 0;
+            strokeStyleSolidRoundwTriangleCap.Properties.StartCap = CapStyle.CAP_STYLE_TRIANGLE;
+            strokeStyleSolidRoundwTriangleCap.Properties.EndCap = CapStyle.CAP_STYLE_TRIANGLE;
+            strokeStyleSolidRoundwTriangleCap.Properties.DashCap = CapStyle.CAP_STYLE_FLAT;
+            strokeStyleSolidRoundwTriangleCap.Properties.LineJoin = LineJoin.LINE_JOIN_ROUND;
+            strokeStyleSolidRoundwTriangleCap.Properties.MiterLimit = 2;
+            strokeStyleSolidRoundwTriangleCap.Properties.DashStyle = DashStyle.DASH_STYLE_SOLID;
+            strokeStyleSolidRoundwTriangleCap.Properties.DashOffset = 0;
 
             var strokeStyleDash = this.mainControl.CreateStrokeStyle("strokeStyleDash");
-            strokeStyleDash.Properties.startCap = CapStyle.CAP_STYLE_FLAT;
-            strokeStyleDash.Properties.endCap = CapStyle.CAP_STYLE_FLAT;
-            strokeStyleDash.Properties.dashCap = CapStyle.CAP_STYLE_ROUND;
-            strokeStyleDash.Properties.lineJoin = LineJoin.LINE_JOIN_MITER;
-            strokeStyleDash.Properties.miterLimit = 10;
-            strokeStyleDash.Properties.dashStyle = DashStyle.DASH_STYLE_DASH;
-            strokeStyleDash.Properties.dashOffset = 0;
+            strokeStyleDash.Properties.StartCap = CapStyle.CAP_STYLE_FLAT;
+            strokeStyleDash.Properties.EndCap = CapStyle.CAP_STYLE_FLAT;
+            strokeStyleDash.Properties.DashCap = CapStyle.CAP_STYLE_ROUND;
+            strokeStyleDash.Properties.LineJoin = LineJoin.LINE_JOIN_MITER;
+            strokeStyleDash.Properties.MiterLimit = 10;
+            strokeStyleDash.Properties.DashStyle = DashStyle.DASH_STYLE_DASH;
+            strokeStyleDash.Properties.DashOffset = 0;
 
             var strokeStyleDot = this.mainControl.CreateStrokeStyle("strokeStyleDot");
-            strokeStyleDot.Properties.startCap = CapStyle.CAP_STYLE_FLAT;
-            strokeStyleDot.Properties.endCap = CapStyle.CAP_STYLE_FLAT;
-            strokeStyleDot.Properties.dashCap = CapStyle.CAP_STYLE_ROUND;
-            strokeStyleDot.Properties.lineJoin = LineJoin.LINE_JOIN_ROUND;
-            strokeStyleDot.Properties.miterLimit = 10;
-            strokeStyleDot.Properties.dashStyle = DashStyle.DASH_STYLE_DOT;
-            strokeStyleDot.Properties.dashOffset = 0;
+            strokeStyleDot.Properties.StartCap = CapStyle.CAP_STYLE_FLAT;
+            strokeStyleDot.Properties.EndCap = CapStyle.CAP_STYLE_FLAT;
+            strokeStyleDot.Properties.DashCap = CapStyle.CAP_STYLE_ROUND;
+            strokeStyleDot.Properties.LineJoin = LineJoin.LINE_JOIN_ROUND;
+            strokeStyleDot.Properties.MiterLimit = 10;
+            strokeStyleDot.Properties.DashStyle = DashStyle.DASH_STYLE_DOT;
+            strokeStyleDot.Properties.DashOffset = 0;
 
             var strokeStyleDashDot = this.mainControl.CreateStrokeStyle("strokeStyleDashDot");
-            strokeStyleDashDot.Properties.startCap = CapStyle.CAP_STYLE_FLAT;
-            strokeStyleDashDot.Properties.endCap = CapStyle.CAP_STYLE_FLAT;
-            strokeStyleDashDot.Properties.dashCap = CapStyle.CAP_STYLE_ROUND;
-            strokeStyleDashDot.Properties.lineJoin = LineJoin.LINE_JOIN_MITER;
-            strokeStyleDashDot.Properties.miterLimit = 10;
-            strokeStyleDashDot.Properties.dashStyle = DashStyle.DASH_STYLE_DASH_DOT;
-            strokeStyleDashDot.Properties.dashOffset = 0;
+            strokeStyleDashDot.Properties.StartCap = CapStyle.CAP_STYLE_FLAT;
+            strokeStyleDashDot.Properties.EndCap = CapStyle.CAP_STYLE_FLAT;
+            strokeStyleDashDot.Properties.DashCap = CapStyle.CAP_STYLE_ROUND;
+            strokeStyleDashDot.Properties.LineJoin = LineJoin.LINE_JOIN_MITER;
+            strokeStyleDashDot.Properties.MiterLimit = 10;
+            strokeStyleDashDot.Properties.DashStyle = DashStyle.DASH_STYLE_DASH_DOT;
+            strokeStyleDashDot.Properties.DashOffset = 0;
 
             var strokeStyleDashDotDot = this.mainControl.CreateStrokeStyle("strokeStyleDashDotDot");
-            strokeStyleDashDotDot.Properties.startCap = CapStyle.CAP_STYLE_FLAT;
-            strokeStyleDashDotDot.Properties.endCap = CapStyle.CAP_STYLE_FLAT;
-            strokeStyleDashDotDot.Properties.dashCap = CapStyle.CAP_STYLE_SQUARE;
-            strokeStyleDashDotDot.Properties.lineJoin = LineJoin.LINE_JOIN_MITER;
-            strokeStyleDashDotDot.Properties.miterLimit = 10;
-            strokeStyleDashDotDot.Properties.dashStyle = DashStyle.DASH_STYLE_DASH_DOT_DOT;
-            strokeStyleDashDotDot.Properties.dashOffset = 0;
+            strokeStyleDashDotDot.Properties.StartCap = CapStyle.CAP_STYLE_FLAT;
+            strokeStyleDashDotDot.Properties.EndCap = CapStyle.CAP_STYLE_FLAT;
+            strokeStyleDashDotDot.Properties.DashCap = CapStyle.CAP_STYLE_SQUARE;
+            strokeStyleDashDotDot.Properties.LineJoin = LineJoin.LINE_JOIN_MITER;
+            strokeStyleDashDotDot.Properties.MiterLimit = 10;
+            strokeStyleDashDotDot.Properties.DashStyle = DashStyle.DASH_STYLE_DASH_DOT_DOT;
+            strokeStyleDashDotDot.Properties.DashOffset = 0;
 
             // 点線パターン
             var dashes = new float[] { 1.0f, 2.0f, 2.0f, 3.0f, 2.0f, 2.0f };
             var strokeStyleCustomOffsetZero = this.mainControl.CreateStrokeStyle("strokeStyleCustomOffsetZero");
-            strokeStyleCustomOffsetZero.Properties.startCap = CapStyle.CAP_STYLE_FLAT;
-            strokeStyleCustomOffsetZero.Properties.endCap = CapStyle.CAP_STYLE_FLAT;
-            strokeStyleCustomOffsetZero.Properties.dashCap = CapStyle.CAP_STYLE_ROUND;
-            strokeStyleCustomOffsetZero.Properties.lineJoin = LineJoin.LINE_JOIN_MITER;
-            strokeStyleCustomOffsetZero.Properties.miterLimit = 10;
-            strokeStyleCustomOffsetZero.Properties.dashStyle = DashStyle.DASH_STYLE_CUSTOM;
-            strokeStyleCustomOffsetZero.Properties.dashOffset = 0;
+            strokeStyleCustomOffsetZero.Properties.StartCap = CapStyle.CAP_STYLE_FLAT;
+            strokeStyleCustomOffsetZero.Properties.EndCap = CapStyle.CAP_STYLE_FLAT;
+            strokeStyleCustomOffsetZero.Properties.DashCap = CapStyle.CAP_STYLE_ROUND;
+            strokeStyleCustomOffsetZero.Properties.LineJoin = LineJoin.LINE_JOIN_MITER;
+            strokeStyleCustomOffsetZero.Properties.MiterLimit = 10;
+            strokeStyleCustomOffsetZero.Properties.DashStyle = DashStyle.DASH_STYLE_CUSTOM;
+            strokeStyleCustomOffsetZero.Properties.DashOffset = 0;
             strokeStyleCustomOffsetZero.DashesAddRange(dashes);
 
             var strokeStyleCustomOffsetNegOne = this.mainControl.CreateStrokeStyle("strokeStyleCustomOffsetNegOne");
-            strokeStyleCustomOffsetNegOne.Properties.startCap = CapStyle.CAP_STYLE_FLAT;
-            strokeStyleCustomOffsetNegOne.Properties.endCap = CapStyle.CAP_STYLE_FLAT;
-            strokeStyleCustomOffsetNegOne.Properties.dashCap = CapStyle.CAP_STYLE_ROUND;
-            strokeStyleCustomOffsetNegOne.Properties.lineJoin = LineJoin.LINE_JOIN_MITER;
-            strokeStyleCustomOffsetNegOne.Properties.miterLimit = 10;
-            strokeStyleCustomOffsetNegOne.Properties.dashStyle = DashStyle.DASH_STYLE_CUSTOM;
-            strokeStyleCustomOffsetNegOne.Properties.dashOffset = -1;
+            strokeStyleCustomOffsetNegOne.Properties.StartCap = CapStyle.CAP_STYLE_FLAT;
+            strokeStyleCustomOffsetNegOne.Properties.EndCap = CapStyle.CAP_STYLE_FLAT;
+            strokeStyleCustomOffsetNegOne.Properties.DashCap = CapStyle.CAP_STYLE_ROUND;
+            strokeStyleCustomOffsetNegOne.Properties.LineJoin = LineJoin.LINE_JOIN_MITER;
+            strokeStyleCustomOffsetNegOne.Properties.MiterLimit = 10;
+            strokeStyleCustomOffsetNegOne.Properties.DashStyle = DashStyle.DASH_STYLE_CUSTOM;
+            strokeStyleCustomOffsetNegOne.Properties.DashOffset = -1;
             strokeStyleCustomOffsetNegOne.DashesAddRange(dashes);
 
             var strokeStyleCustomOffsetNegTwo = this.mainControl.CreateStrokeStyle("strokeStyleCustomOffsetNegTwo");
-            strokeStyleCustomOffsetNegTwo.Properties.startCap = CapStyle.CAP_STYLE_FLAT;
-            strokeStyleCustomOffsetNegTwo.Properties.endCap = CapStyle.CAP_STYLE_FLAT;
-            strokeStyleCustomOffsetNegTwo.Properties.dashCap = CapStyle.CAP_STYLE_ROUND;
-            strokeStyleCustomOffsetNegTwo.Properties.lineJoin = LineJoin.LINE_JOIN_MITER;
-            strokeStyleCustomOffsetNegTwo.Properties.miterLimit = 10;
-            strokeStyleCustomOffsetNegTwo.Properties.dashStyle = DashStyle.DASH_STYLE_CUSTOM;
-            strokeStyleCustomOffsetNegTwo.Properties.dashOffset = -2;
+            strokeStyleCustomOffsetNegTwo.Properties.StartCap = CapStyle.CAP_STYLE_FLAT;
+            strokeStyleCustomOffsetNegTwo.Properties.EndCap = CapStyle.CAP_STYLE_FLAT;
+            strokeStyleCustomOffsetNegTwo.Properties.DashCap = CapStyle.CAP_STYLE_ROUND;
+            strokeStyleCustomOffsetNegTwo.Properties.LineJoin = LineJoin.LINE_JOIN_MITER;
+            strokeStyleCustomOffsetNegTwo.Properties.MiterLimit = 10;
+            strokeStyleCustomOffsetNegTwo.Properties.DashStyle = DashStyle.DASH_STYLE_CUSTOM;
+            strokeStyleCustomOffsetNegTwo.Properties.DashOffset = -2;
             strokeStyleCustomOffsetNegTwo.DashesAddRange(dashes);
 
             var strokeStyleCustomOffsetPosOne = this.mainControl.CreateStrokeStyle("strokeStyleCustomOffsetPosOne");
-            strokeStyleCustomOffsetPosOne.Properties.startCap = CapStyle.CAP_STYLE_FLAT;
-            strokeStyleCustomOffsetPosOne.Properties.endCap = CapStyle.CAP_STYLE_FLAT;
-            strokeStyleCustomOffsetPosOne.Properties.dashCap = CapStyle.CAP_STYLE_ROUND;
-            strokeStyleCustomOffsetPosOne.Properties.lineJoin = LineJoin.LINE_JOIN_MITER;
-            strokeStyleCustomOffsetPosOne.Properties.miterLimit = 10;
-            strokeStyleCustomOffsetPosOne.Properties.dashStyle = DashStyle.DASH_STYLE_CUSTOM;
-            strokeStyleCustomOffsetPosOne.Properties.dashOffset = 1;
+            strokeStyleCustomOffsetPosOne.Properties.StartCap = CapStyle.CAP_STYLE_FLAT;
+            strokeStyleCustomOffsetPosOne.Properties.EndCap = CapStyle.CAP_STYLE_FLAT;
+            strokeStyleCustomOffsetPosOne.Properties.DashCap = CapStyle.CAP_STYLE_ROUND;
+            strokeStyleCustomOffsetPosOne.Properties.LineJoin = LineJoin.LINE_JOIN_MITER;
+            strokeStyleCustomOffsetPosOne.Properties.MiterLimit = 10;
+            strokeStyleCustomOffsetPosOne.Properties.DashStyle = DashStyle.DASH_STYLE_CUSTOM;
+            strokeStyleCustomOffsetPosOne.Properties.DashOffset = 1;
             strokeStyleCustomOffsetPosOne.DashesAddRange(dashes);
 
             var strokeStyleCustomOffsetPosTwo = this.mainControl.CreateStrokeStyle("strokeStyleCustomOffsetPosTwo");
-            strokeStyleCustomOffsetPosTwo.Properties.startCap = CapStyle.CAP_STYLE_FLAT;
-            strokeStyleCustomOffsetPosTwo.Properties.endCap = CapStyle.CAP_STYLE_FLAT;
-            strokeStyleCustomOffsetPosTwo.Properties.dashCap = CapStyle.CAP_STYLE_ROUND;
-            strokeStyleCustomOffsetPosTwo.Properties.lineJoin = LineJoin.LINE_JOIN_MITER;
-            strokeStyleCustomOffsetPosTwo.Properties.miterLimit = 10;
-            strokeStyleCustomOffsetPosTwo.Properties.dashStyle = DashStyle.DASH_STYLE_CUSTOM;
-            strokeStyleCustomOffsetPosTwo.Properties.dashOffset = 2;
+            strokeStyleCustomOffsetPosTwo.Properties.StartCap = CapStyle.CAP_STYLE_FLAT;
+            strokeStyleCustomOffsetPosTwo.Properties.EndCap = CapStyle.CAP_STYLE_FLAT;
+            strokeStyleCustomOffsetPosTwo.Properties.DashCap = CapStyle.CAP_STYLE_ROUND;
+            strokeStyleCustomOffsetPosTwo.Properties.LineJoin = LineJoin.LINE_JOIN_MITER;
+            strokeStyleCustomOffsetPosTwo.Properties.MiterLimit = 10;
+            strokeStyleCustomOffsetPosTwo.Properties.DashStyle = DashStyle.DASH_STYLE_CUSTOM;
+            strokeStyleCustomOffsetPosTwo.Properties.DashOffset = 2;
             strokeStyleCustomOffsetPosTwo.DashesAddRange(dashes);
 
             var pathGeometry = this.mainControl.CreatePathGeometry("path geometry");

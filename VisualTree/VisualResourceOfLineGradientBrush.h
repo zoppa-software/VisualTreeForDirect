@@ -24,12 +24,25 @@ namespace VisualTree
         /// <summary>グラデーション境界の位置と色を格納する。</summary>
         ref class GradientStop
         {
-        public:
+        private:
             // 色
             Color color;
 
             // 位置
             float position;
+
+        public:
+            /// <summary>色設定を設定、取得する。</summary>
+            property Color GradientColor {
+                Color get() { return this->color; }
+                void set(Color val) { this->color = val; }
+            }
+
+            /// <summary>位置設定を設定、取得する。</summary>
+            property float Position {
+                float get() { return this->position; }
+                void set(float val) { this->position = val; }
+            }
 
         public:
             /// <summary>コンストラクタ。</summary>
@@ -112,7 +125,7 @@ namespace VisualTree
 
 	public:
         /// <summary>グラデーション境界の位置と色を全て消去する。</summary>
-        void Clear()
+        void ClearGradientStops()
         {
             this->gradientStops->Clear();
         }
@@ -133,11 +146,11 @@ namespace VisualTree
             if (this->gradientStops->Count > 0) {
                 for each (GradientStop^ stp in this->gradientStops) {
                     D2D1_GRADIENT_STOP st;
-                    st.color = D2D1::ColorF(stp->color.R / 255.0f,
-                        stp->color.G / 255.0f,
-                        stp->color.B / 255.0f,
-                        stp->color.A / 255.0f);
-                    st.position = stp->position;
+                    st.color = D2D1::ColorF(stp->GradientColor.R / 255.0f,
+                        stp->GradientColor.G / 255.0f,
+                        stp->GradientColor.B / 255.0f,
+                        stp->GradientColor.A / 255.0f);
+                    st.position = stp->Position;
                     pos.push_back(st);
                 }
             }

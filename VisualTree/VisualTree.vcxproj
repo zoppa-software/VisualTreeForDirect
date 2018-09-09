@@ -155,6 +155,7 @@
     <ClInclude Include="VisualResourceOfLineGradientBrush.h" />
     <ClInclude Include="VisualResourceOfPathGeometry.h" />
     <ClInclude Include="VisualResourceOfRadialGradientBrush.h" />
+    <ClInclude Include="VisualResourceOfRectangleGeometry.h" />
     <ClInclude Include="VisualResourceOfSolidColorBrush.h" />
     <ClInclude Include="VisualResourceOfStrokeStyle.h" />
     <ClInclude Include="VisualResourceOfTextFormat.h" />

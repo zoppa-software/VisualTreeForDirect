@@ -24,27 +24,70 @@ namespace VisualTree
         /// <summary>形状の輪郭を描くストロークを記述します。</summary>
         ref class StrokeStyleProperties
         {
-        public:
-            /// <summary>ストロークジオメトリで開いている先端形状。</summary>
+        private:
+            // ストロークジオメトリで開いている先端形状
             CapStyle startCap;
 
-            /// <summary>ストロークジオメトリで開いている終端形状。</summary>
+            // ストロークジオメトリで開いている終端形状
             CapStyle endCap;
 
-            /// <summary>各ダッシュセグメントの両端の形状。</summary>
+            // 各ダッシュセグメントの両端の形状
             CapStyle dashCap;
 
-            /// <summary>セグメントの結合方法を示す値。</summary>
+            // セグメントの結合方法を示す値
             LineJoin lineJoin;
 
-            /// <summary>接合された角の接合の厚さの制限。この値は常に1.0f以上であるかのように扱われます。</summary>
+            // 接合された角の接合の厚さの制限。この値は常に1.0f以上であるかのように扱われます
             float miterLimit;
 
-            /// <summary>ストロークにダッシュパターンがあるかどうかを指定する値。</summary>
+            // ストロークにダッシュパターンがあるかどうかを指定する値
             DashStyle dashStyle;
 
-            /// <summary>ダッシュシーケンス内のオフセットを指定する値。</summary>
+            // ダッシュシーケンス内のオフセットを指定する値
             float dashOffset;
+
+        public:
+            /// <summary>ストロークジオメトリで開いている先端形状を設定、取得する。</summary>
+            property CapStyle StartCap {
+                CapStyle get() { return this->startCap; }
+                void set(CapStyle value) { this->startCap = value; }
+            }
+
+            /// <summary>ストロークジオメトリで開いている終端形状を設定、取得する。</summary>
+            property CapStyle EndCap {
+                CapStyle get() { return this->endCap; }
+                void set(CapStyle value) { this->endCap = value; }
+            }
+
+            /// <summary>各ダッシュセグメントの両端の形状を設定、取得する。</summary>
+            property CapStyle DashCap {
+                CapStyle get() { return this->dashCap; }
+                void set(CapStyle value) { this->dashCap = value; }
+            }
+
+            /// <summary>セグメントの結合方法を示す値を設定、取得する。</summary>
+            property VisualTree::LineJoin LineJoin {
+                VisualTree::LineJoin get() { return this->lineJoin; }
+                void set(VisualTree::LineJoin value) { this->lineJoin = value; }
+            }
+
+            /// <summary>接合された角の接合の厚さの制限を設定、取得する。</summary>
+            property float MiterLimit {
+                float get() { return this->miterLimit; }
+                void set(float value) { this->miterLimit = value; }
+            }
+
+            /// <summary>ストロークにダッシュパターンがあるかどうかを指定する値を設定、取得する。</summary>
+            property VisualTree::DashStyle DashStyle {
+                VisualTree::DashStyle get() { return this->dashStyle; }
+                void set(VisualTree::DashStyle value) { this->dashStyle = value; }
+            }
+
+            /// <summary>ダッシュシーケンス内のオフセットを指定する値を設定、取得する。</summary>
+            property float DashOffset {
+                float get() { return this->dashOffset; }
+                void set(float value) { this->dashOffset = value; }
+            }
         };
 
 	private:
@@ -109,13 +152,14 @@ namespace VisualTree
             if (this->factory != NULL) {
                 if (this->strokeStyle == NULL) {
                     D2D1_STROKE_STYLE_PROPERTIES prop = D2D1::StrokeStyleProperties(
-                        (D2D1_CAP_STYLE)this->properties->startCap,
-                        (D2D1_CAP_STYLE)this->properties->endCap,
-                        (D2D1_CAP_STYLE)this->properties->dashCap,
-                        (D2D1_LINE_JOIN)this->properties->lineJoin,
-                        this->properties->miterLimit,
-                        (D2D1_DASH_STYLE)this->properties->dashStyle,
-                        this->properties->dashOffset);
+                        (D2D1_CAP_STYLE)this->properties->StartCap,
+                        (D2D1_CAP_STYLE)this->properties->EndCap,
+                        (D2D1_CAP_STYLE)this->properties->DashCap,
+                        (D2D1_LINE_JOIN)this->properties->LineJoin,
+                        this->properties->MiterLimit,
+                        (D2D1_DASH_STYLE)this->properties->DashStyle,
+                        this->properties->DashOffset);
+
                     ID2D1StrokeStyle * stroke;
                     std::vector<float> dhs(this->dashes->Count);
                     for each (float v in this->dashes) {

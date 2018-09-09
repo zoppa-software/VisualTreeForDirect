@@ -66,6 +66,13 @@ namespace VisualTree
         BitmapBrushProperties ^ properties;
 
     public:
+        /// <summary>描画するビットマップを設定、取得する。</summary>
+        property Bitmap ^ Source
+        {
+            Bitmap ^ get() { return this->bitmap; }
+            void set(Bitmap ^ bit) { this->bitmap = bit; }
+        }
+
         /// <summary>ビットマップを配置するための不足部の引き延ばしプロパティを取得する。</summary>
         property BitmapBrushProperties ^ Properties
         {
@@ -89,14 +96,6 @@ namespace VisualTree
                 delete this->bitmap;
                 this->bitmap = nullptr;
             }
-        }
-
-    public:
-        /// <summary>描画するビットマップを設定、取得する。</summary>
-        property Bitmap ^ Source
-        {
-            Bitmap ^ get() { return this->bitmap; }
-            void set(Bitmap ^ bit) { this->bitmap = bit; }
         }
 
     public:

@@ -87,23 +87,23 @@ namespace VisualTree
     {
         D2D1_LAYER_PARAMETERS prm;
         VisualLayer::LayerParameters ^ src = layer->Parameters;
-        prm.contentBounds = (src->contentBounds.Left == FLT_MIN &&
-                             src->contentBounds.Top == FLT_MIN &&
-                             src->contentBounds.Width == FLT_MAX &&
-                             src->contentBounds.Height == FLT_MAX) ?
+        prm.contentBounds = (src->ContentBounds.Left == FLT_MIN &&
+                             src->ContentBounds.Top == FLT_MIN &&
+                             src->ContentBounds.Width == FLT_MAX &&
+                             src->ContentBounds.Height == FLT_MAX) ?
                              D2D1::InfiniteRect() :
-                             D2D1::RectF(src->contentBounds.Left,
-                                         src->contentBounds.Top,
-                                         src->contentBounds.Right,
-                                         src->contentBounds.Bottom);
-        prm.geometricMask = src->geometricMask != nullptr ?
-                            (ID2D1Geometry*)src->geometricMask->GetInstance() : NULL;
-        prm.maskAntialiasMode = (D2D1_ANTIALIAS_MODE)src->maskAntialiasMode;
-        prm.maskTransform = src->maskTransform.Convert();
-        prm.opacity = src->opacity;
-        prm.opacityBrush = src->opacityBrush != nullptr ?
-                           (ID2D1Brush*)src->opacityBrush->GetInstance() : NULL;
-        prm.layerOptions = (D2D1_LAYER_OPTIONS)src->layerOptions;
+                             D2D1::RectF(src->ContentBounds.Left,
+                                         src->ContentBounds.Top,
+                                         src->ContentBounds.Right,
+                                         src->ContentBounds.Bottom);
+        prm.geometricMask = src->GeometricMask != nullptr ?
+                            (ID2D1Geometry*)src->GeometricMask->GetInstance() : NULL;
+        prm.maskAntialiasMode = (D2D1_ANTIALIAS_MODE)src->MaskAntialiasMode;
+        prm.maskTransform = src->MaskTransform.Convert();
+        prm.opacity = src->Opacity;
+        prm.opacityBrush = src->OpacityBrush != nullptr ?
+                           (ID2D1Brush*)src->OpacityBrush->GetInstance() : NULL;
+        prm.layerOptions = (D2D1_LAYER_OPTIONS)src->LayerOptions;
         this->renderTarget->PushLayer(prm, layer->GetInstance());
     }
 

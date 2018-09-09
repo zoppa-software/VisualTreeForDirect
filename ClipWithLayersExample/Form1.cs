@@ -56,7 +56,7 @@ namespace GeometriesExample
             // レイヤークリップ後
             e.RenderTarget.SetTransform(350, 50);
             using (var layer = e.RenderTarget.CreateLayer()) {
-                layer.Parameters.geometricMask = e.Resources["path geometry"];
+                layer.Parameters.GeometricMask = e.Resources["path geometry"];
                 e.RenderTarget.PushLayer(layer);
 
                 e.RenderTarget.DrawBitmap(e.Resources["fish bitmap"], new RectangleF(0, 0, 205, 141));

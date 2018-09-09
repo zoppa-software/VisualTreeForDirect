@@ -15,6 +15,7 @@
 #include "VisualResourceOfRadialGradientBrush.h"
 #include "VisualResourceOfTextFormat.h"
 #include "VisualResourceOfStrokeStyle.h"
+#include "VisualResourceOfRectangleGeometry.h"
 
 using namespace System;
 using namespace System::ComponentModel;
@@ -192,5 +193,11 @@ namespace VisualTree {
         /// <param name="name">リソース名。</param>
         /// <return>リソース。</return>
         VisualResourceOfStrokeStyle ^ CreateStrokeStyle(String ^ name);
+
+        /// <summary>矩形ジオメトリリソースを作成する。</summary>
+        /// <param name="name">リソース名。</param>
+        /// <param name="rectangle">作成する矩形。</param>
+        /// <return>リソース。</return>
+        VisualResourceOfRectangleGeometry ^ CreateRectangleGeometry(String ^ name, RectangleF rectangle);
 	};
 }

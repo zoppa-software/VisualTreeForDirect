@@ -43,6 +43,7 @@ namespace VisualTree
         // フォントサイズ
         float fontSize;
 
+        // ロケール名
         String ^ localNm;
 
     public:
