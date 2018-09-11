@@ -156,6 +156,9 @@
     <ClInclude Include="ArcSize.h">
       <Filter>Enum</Filter>
     </ClInclude>
+    <ClInclude Include="VisualResourceOfTransformedGeometry.h">
+      <Filter>Resource\Geometry</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp">

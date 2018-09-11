@@ -161,6 +161,7 @@
     <ClInclude Include="VisualResourceOfSolidColorBrush.h" />
     <ClInclude Include="VisualResourceOfStrokeStyle.h" />
     <ClInclude Include="VisualResourceOfTextFormat.h" />
+    <ClInclude Include="VisualResourceOfTransformedGeometry.h" />
     <ClInclude Include="VisualResources.h" />
     <ClInclude Include="VisualTeeControl.h" />
     <ClInclude Include="Resource.h" />

@@ -141,7 +141,7 @@ namespace VisualTree
                 for each (PointF p in points) {
                     pos.push_back(D2D1::Point2F(p.X, p.Y));
                 }
-                this->sink->AddLines(pos.data(), pos.size());
+                this->sink->AddLines(pos.data(), (UINT32)pos.size());
 			}
 
             void AddArc(ArcSegment ^ segment)
@@ -176,7 +176,7 @@ namespace VisualTree
                     );
                     segs.push_back(seg);
                 }
-                this->sink->AddBeziers(segs.data(), segs.size());
+                this->sink->AddBeziers(segs.data(), (UINT32)segs.size());
             }
 
 			void EndFigure(FigureEnd end)
@@ -221,5 +221,10 @@ namespace VisualTree
 		VisualResourceEntity ^ ChangeEntity(ID2D1DCRenderTarget * renderTarget) override {
 			return gcnew VisualResourceEntity2D(this, this->geometry, true);
 		}
+
+    internal:
+        ID2D1PathGeometry * GetGeometry() {
+            return this->geometry;
+        }
 	};
 }

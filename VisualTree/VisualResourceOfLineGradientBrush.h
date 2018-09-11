@@ -165,7 +165,7 @@ namespace VisualTree
             ID2D1GradientStopCollection * gradientStops = NULL;
             ID2D1LinearGradientBrush * brush = NULL;
             HRESULT hr = renderTarget->CreateGradientStopCollection(pos.data(),
-                                                                    pos.size(),
+                                                                    (UINT32)pos.size(),
                                                                     (D2D1_GAMMA)this->gamma,
                                                                     (D2D1_EXTEND_MODE)this->extendMode,
                                                                     &gradientStops);

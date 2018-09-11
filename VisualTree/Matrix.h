@@ -75,5 +75,102 @@ namespace VisualTree
             res._32 = y;
             return res;
         }
+
+        static Matrix Rotation(float angle, PointF center)
+        {
+            Matrix res;
+            D2D1::Matrix3x2F max = D2D1::Matrix3x2F::Rotation(angle, D2D1::Point2F(center.X, center.Y));
+
+            res._11 = max._11;
+            res._12 = max._12;
+            res._21 = max._21;
+            res._22 = max._22;
+            res._31 = max._31;
+            res._32 = max._32;
+            return res;
+        }
+
+        static Matrix Rotation(float angle)
+        {
+            Matrix res;
+            D2D1::Matrix3x2F max = D2D1::Matrix3x2F::Rotation(angle);
+            res._11 = max._11;
+            res._12 = max._12;
+            res._21 = max._21;
+            res._22 = max._22;
+            res._31 = max._31;
+            res._32 = max._32;
+            return res;
+        }
+
+        static Matrix Scale(float x, float y, PointF center)
+        {
+            Matrix res;
+            D2D1::Matrix3x2F max = D2D1::Matrix3x2F::Scale(x, y, D2D1::Point2F(center.X, center.Y));
+            res._11 = max._11;
+            res._12 = max._12;
+            res._21 = max._21;
+            res._22 = max._22;
+            res._31 = max._31;
+            res._32 = max._32;
+            return res;
+        }
+
+        static Matrix Scale(float x, float y)
+        {
+            Matrix res;
+            D2D1::Matrix3x2F max = D2D1::Matrix3x2F::Scale(x, y);
+            res._11 = max._11;
+            res._12 = max._12;
+            res._21 = max._21;
+            res._22 = max._22;
+            res._31 = max._31;
+            res._32 = max._32;
+            return res;
+        }
+
+        static Matrix Scale(SizeF size, PointF center)
+        {
+            Matrix res;
+            D2D1::Matrix3x2F max = D2D1::Matrix3x2F::Scale(
+                                D2D1::SizeF(size.Width, size.Height),
+                                D2D1::Point2F(center.X, center.Y));
+            res._11 = max._11;
+            res._12 = max._12;
+            res._21 = max._21;
+            res._22 = max._22;
+            res._31 = max._31;
+            res._32 = max._32;
+            return res;
+        }
+
+        static Matrix Scale(SizeF size)
+        {
+            Matrix res;
+            D2D1::Matrix3x2F max = D2D1::Matrix3x2F::Scale(
+                                D2D1::SizeF(size.Width, size.Height));
+            res._11 = max._11;
+            res._12 = max._12;
+            res._21 = max._21;
+            res._22 = max._22;
+            res._31 = max._31;
+            res._32 = max._32;
+            return res;
+        }
+
+        static Matrix operator*(Matrix left, Matrix right)
+        {
+            Matrix res;
+            D2D1_MATRIX_3X2_F l = left.Convert();
+            D2D1_MATRIX_3X2_F r = right.Convert();
+            D2D1_MATRIX_3X2_F max = l * r;
+            res._11 = max._11;
+            res._12 = max._12;
+            res._21 = max._21;
+            res._22 = max._22;
+            res._31 = max._31;
+            res._32 = max._32;
+            return res;
+        }
     };
 }

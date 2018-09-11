@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F0174DBF-D322-4FAA-9F69-7638B44C18C4}</ProjectGuid>
+    <ProjectGuid>{7F5B8A33-413E-4DC3-9C0C-F9E02C60A0B9}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>GeometriesExample</RootNamespace>
     <AssemblyName>GeometriesExample</AssemblyName>

@@ -16,6 +16,7 @@
 #include "VisualResourceOfTextFormat.h"
 #include "VisualResourceOfStrokeStyle.h"
 #include "VisualResourceOfRectangleGeometry.h"
+#include "VisualResourceOfTransformedGeometry.h"
 
 using namespace System;
 using namespace System::ComponentModel;
@@ -87,12 +88,20 @@ namespace VisualTree {
         // イベント処理
         //-------------------------------------------------------------------------
         /// <summary>ロードイベント。</summary>
-        /// <param name="m">イベントオブジェクト。</param>
+        /// <param name="e">イベントオブジェクト。</param>
         void OnLoad(EventArgs ^ e) override;
 
         /// <summary>サイズチェンジイベント。</summary>
-        /// <param name="m">イベントオブジェクト。</param>
+        /// <param name="e">イベントオブジェクト。</param>
         void OnSizeChanged(EventArgs ^ e) override;
+
+        /// <summary>背景描画イベント。</summary>
+        /// <param name="e">イベントオブジェクト。</param>
+        void OnPaintBackground(PaintEventArgs ^ e) override {
+            if (this->resources->Count <= 0) {
+                Control::OnPaintBackground(e);
+            }
+        }
 
         /// <summary>ウィンドウプロシージャ。</summary>
         /// <param name="m">メッセージ構造体。</param>
@@ -196,5 +205,12 @@ namespace VisualTree {
         /// <param name="rectangle">作成する矩形。</param>
         /// <return>リソース。</return>
         VisualResourceOfRectangleGeometry ^ CreateRectangleGeometry(String ^ name, RectangleF rectangle);
+
+        /// <summary>変形ジオメトリリソースを作成する。</summary>
+        /// <param name="name">リソース名。</param>
+        /// <param name="pathGeometry">変形するジオメトリ。</param>
+        /// <param name="matrix">変形マトリクス。</param>
+        /// <return>リソース。</return>
+        VisualResourceOfTransformedGeometry ^ CreateTransformedGeometry(String ^ name, VisualResourceOfPathGeometry ^ pathGeometry, Matrix matrix);
 	};
 }

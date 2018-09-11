@@ -20,9 +20,20 @@ namespace VisualTree
         Dictionary<String ^, VisualResourceEntity ^>^ items;
 
     public:
+        /// <summary>登録しているリソース数を取得する。</summary>
+        /// <return>リソース数。</return>
+        property int Count
+        {
+            int get() {
+                return this->items->Count;
+            }
+        }
+
         /// <summary>名前を指定してリソースを取得する。</summary>
         /// <param name="name">リソース名。</param>
-        property VisualResourceEntity ^ default[String^] {
+        /// <return>リソース。</return>
+        property VisualResourceEntity ^ default[String^]
+        {
             VisualResourceEntity ^ get(String^ name) {
                 VisualResourceEntity ^ val;
                 return (this->items->TryGetValue(name, val) ? val : nullptr);
@@ -30,14 +41,16 @@ namespace VisualTree
         }
 
         /// <summary>リソース名を列挙する。</summary>
-        property Dictionary<String ^, VisualResourceEntity ^>::KeyCollection ^ Keys {
+        property Dictionary<String ^, VisualResourceEntity ^>::KeyCollection ^ Keys
+        {
             Dictionary<String ^, VisualResourceEntity ^>::KeyCollection ^ get() {
                 return this->items->Keys;
             }
         }
 
         /// <summary>リソースを列挙する。</summary>
-        property Dictionary<String ^, VisualResourceEntity ^>::ValueCollection ^ Values {
+        property Dictionary<String ^, VisualResourceEntity ^>::ValueCollection ^ Values 
+        {
             Dictionary<String ^, VisualResourceEntity ^>::ValueCollection ^ get() {
                 return this->items->Values;
             }

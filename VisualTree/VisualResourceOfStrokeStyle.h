@@ -165,7 +165,7 @@ namespace VisualTree
                     for each (float v in this->dashes) {
                         dhs.push_back(v);
                     }
-                    this->factory->CreateStrokeStyle(prop, (float*)dhs.data(), dhs.size(), &stroke);
+                    this->factory->CreateStrokeStyle(prop, (float*)dhs.data(), (UINT32)dhs.size(), &stroke);
                     this->strokeStyle = stroke;
                 }
                 return gcnew VisualResourceEntity2D(this, this->strokeStyle, true);

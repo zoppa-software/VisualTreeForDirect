@@ -296,4 +296,11 @@ namespace VisualTree
         this->srcres->Add(res);
         return res;
     }
+
+    VisualResourceOfTransformedGeometry ^ VisualTeeControl::CreateTransformedGeometry(String ^ name, VisualResourceOfPathGeometry ^ pathGeometry, Matrix matrix)
+    {
+        VisualResourceOfTransformedGeometry ^ res = gcnew VisualResourceOfTransformedGeometry(name, this->factory, pathGeometry, matrix);
+        this->srcres->Add(res);
+        return res;
+    }
 }
