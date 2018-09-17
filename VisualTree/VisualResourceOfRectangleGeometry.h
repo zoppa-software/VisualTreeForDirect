@@ -6,11 +6,11 @@
 #include <wincodec.h>
 #include "VisualResource.h"
 
-using namespace System;
-using namespace System::Drawing;
-
 namespace VisualTree
 {
+    using namespace System;
+    using namespace System::Drawing;
+
     /// <summary>矩形ジオメトリリソース。</summary>
 	public ref class VisualResourceOfRectangleGeometry
 		: public VisualResource

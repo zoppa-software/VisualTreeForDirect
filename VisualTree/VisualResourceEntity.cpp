@@ -55,4 +55,28 @@ namespace VisualTree
     {
         ((ID2D1Brush*)this->instance)->SetTransform(matrix.Convert());
     }
+
+    //-------------------------------------------------------------------------
+    // COM用、リソース実体
+    //-------------------------------------------------------------------------
+    void VisualResourceEntityWrite::SafeRelease()
+    {
+        if (this->instance != NULL && this->isLongLife) {
+            this->instance->Release();
+            this->instance = NULL;
+        }
+    }
+
+    void VisualResourceEntityWrite::ForceRelease()
+    {
+        if (this->instance != NULL) {
+            this->instance->Release();
+            this->instance = NULL;
+        }
+    }
+
+    IUnknown * VisualResourceEntityWrite::GetWriteInstance()
+    {
+        return this->instance;
+    }
 }

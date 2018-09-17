@@ -18,15 +18,15 @@
 #include "VisualResourceOfRectangleGeometry.h"
 #include "VisualResourceOfTransformedGeometry.h"
 
-using namespace System;
-using namespace System::ComponentModel;
-using namespace System::Collections;
-using namespace System::Collections::Generic;
-using namespace System::Windows::Forms;
-using namespace System::Data;
-using namespace System::Drawing;
-
-namespace VisualTree {
+namespace VisualTree
+{
+    using namespace System;
+    using namespace System::ComponentModel;
+    using namespace System::Collections;
+    using namespace System::Collections::Generic;
+    using namespace System::Windows::Forms;
+    using namespace System::Data;
+    using namespace System::Drawing;
 
 	/// <summary>VisualTree描画用コントロール。</summary>
 	public ref class VisualTeeControl
@@ -64,7 +64,7 @@ namespace VisualTree {
 		ID2D1DCRenderTarget * renderTarget;
 
         // リソースリスト（登録順）
-		List<VisualResource ^>^ srcres;
+		Dictionary<String ^, VisualResource ^>^ srcres;
 
         // リソースリスト（テーブル）
 		VisualResources ^ resources;
@@ -97,11 +97,7 @@ namespace VisualTree {
 
         /// <summary>背景描画イベント。</summary>
         /// <param name="e">イベントオブジェクト。</param>
-        void OnPaintBackground(PaintEventArgs ^ e) override {
-            if (this->resources->Count <= 0) {
-                Control::OnPaintBackground(e);
-            }
-        }
+        void OnPaintBackground(PaintEventArgs ^ e) override;
 
         /// <summary>ウィンドウプロシージャ。</summary>
         /// <param name="m">メッセージ構造体。</param>
@@ -143,6 +139,13 @@ namespace VisualTree {
 
         /// <summary>管理しているリソースを解放する。</summary>
         void ClearResource();
+
+        /// <summary>レンダーターゲットを再構築する。</summary>
+        void Rebuild();
+
+        /// <summary>指定名のリソースを削除する。</summary>
+        /// <param name="name">削除するリソース名。</param>
+        void Remove(String ^ name);
 
     public:
         //-------------------------------------------------------------------------

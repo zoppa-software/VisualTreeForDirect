@@ -10,11 +10,11 @@
 #include "VisualResource.h"
 #include "VisualResourceOfPathGeometry.h"
 
-using namespace System;
-using namespace System::Drawing;
-
 namespace VisualTree
 {
+    using namespace System;
+    using namespace System::Drawing;
+
     /// <summary>矩形ジオメトリリソース。</summary>
 	public ref class VisualResourceOfTransformedGeometry
 		: public VisualResource

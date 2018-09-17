@@ -10,12 +10,12 @@
 #include "LineJoin.h"
 #include "VisualResource.h"
 
-using namespace System;
-using namespace System::Drawing;
-using namespace System::Collections::Generic;
-
 namespace VisualTree
 {
+    using namespace System;
+    using namespace System::Drawing;
+    using namespace System::Collections::Generic;
+
     /// <summary>ストロークスタイルリソース。</summary>
     public ref class VisualResourceOfStrokeStyle sealed
         : public VisualResource

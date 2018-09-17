@@ -11,12 +11,12 @@
 #include "VisualResource.h"
 #include "VisualResourceEntity.h"
 
-using namespace System;
-using namespace System::Drawing;
-using namespace System::Globalization;
-
 namespace VisualTree
 {
+    using namespace System;
+    using namespace System::Drawing;
+    using namespace System::Globalization;
+
     /// <summary>テキストフォーマット・リソース。</summary>
 	public ref class VisualResourceOfTextFormat
 		: public VisualResource

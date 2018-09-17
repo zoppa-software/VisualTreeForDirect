@@ -1,9 +1,9 @@
 #pragma once
 
-using namespace System::Drawing;
-
 namespace VisualTree
 {
+    using namespace System::Drawing;
+
     /// <summary>‘È‰~‚Ì’†S“_AX”¼ŒaA‚¨‚æ‚Ñ Y”¼Œa‚ğŠi”[‚µ‚Ü‚·B</summary>
     public value class Ellipse
     {

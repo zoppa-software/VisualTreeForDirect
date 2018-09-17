@@ -7,11 +7,11 @@
 #include "VisualResource.h"
 #include "Matrix.h"
 
-using namespace System;
-using namespace System::Drawing;
-
 namespace VisualTree
 {
+    using namespace System;
+    using namespace System::Drawing;
+
     ref class VisualResource;
 
     /// <summary>リソースクラス・描画実体。</summary>
@@ -226,28 +226,13 @@ namespace VisualTree
 
     public:
         /// <summary>リソースを解放する。</summary>
-        void SafeRelease() override
-        {
-            if (this->instance != NULL && this->isLongLife) {
-                this->instance->Release();
-                this->instance = NULL;
-            }
-        }
+        void SafeRelease() override;
 
         /// <summary>リソースを解放する。</summary>
-        void ForceRelease() override
-        {
-            if (this->instance != NULL) {
-                this->instance->Release();
-                this->instance = NULL;
-            }
-        }
+        void ForceRelease() override;
 
         /// <summary>コムインターフェイスのインスタンスを取得する。</summary>
-        IUnknown * GetWriteInstance() override
-        {
-            return this->instance;
-        }
+        IUnknown * GetWriteInstance() override;
 
         /// <summary>色設定を変更する。</summary>
         /// <param name="color">変更する色。</param>

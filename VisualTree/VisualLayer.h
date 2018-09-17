@@ -10,11 +10,11 @@
 #include "Matrix.h"
 #include "VisualResourceEntity.h"
 
-using namespace System;
-using namespace System::Drawing;
-
 namespace VisualTree
 {
+    using namespace System;
+    using namespace System::Drawing;
+
     /// <summary>•`‰æƒŒƒCƒ„[B</summary>
     public ref class VisualLayer sealed
         : IDisposable

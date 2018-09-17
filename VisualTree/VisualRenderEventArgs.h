@@ -2,10 +2,10 @@
 #include "VisualResources.h"
 #include "VisualRenderTarget.h"
 
-using namespace System;
-
 namespace VisualTree
 {
+    using namespace System;
+
     /// <summary>描画イベントオブジェクト。</summary>
     public ref class VisualRenderEventArgs sealed
         : EventArgs

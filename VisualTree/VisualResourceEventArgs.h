@@ -1,11 +1,11 @@
 #pragma once
 #include "VisualResources.h"
 
-using namespace System;
-using namespace System::Collections::Generic;
-
 namespace VisualTree
 {
+    using namespace System;
+    using namespace System::Collections::Generic;
+
     /// <summary>リソース作成イベントオブジェクト。</summary>
     public ref class VisualResourceEventArgs
         : EventArgs

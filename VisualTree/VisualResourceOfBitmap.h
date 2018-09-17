@@ -9,12 +9,12 @@
 #include "VisualResource.h"
 #include "VisualResourceEntity.h"
 
-using namespace System;
-using namespace System::Drawing;
-using namespace System::Drawing::Imaging;
-
 namespace VisualTree
 {
+    using namespace System;
+    using namespace System::Drawing;
+    using namespace System::Drawing::Imaging;
+
     /// <summary>ビットマップリソース。</summary>
     public ref class VisualResourceOfBitmap sealed
         : public VisualResource

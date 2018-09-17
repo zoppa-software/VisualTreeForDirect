@@ -7,11 +7,11 @@
 #include "VisualResource.h"
 #include "VisualResourceEntity.h"
 
-using namespace System;
-using namespace System::Collections::Generic;
-
 namespace VisualTree
 {
+    using namespace System;
+    using namespace System::Collections::Generic;
+
     /// <summary>リソース・コレクション。</summary>
 	public ref class VisualResources sealed
 	{
@@ -68,6 +68,14 @@ namespace VisualTree
         void Clear()
         {
             this->items->Clear();
+        }
+
+        /// <summary>指定名のリソースを保持していたら真を返す。</summary>
+        /// <param name="name">リソース名。</param>
+        /// <return>リソースを持っていたら真。</return>
+        bool HasResource(String^ name)
+        {
+            return this->items->ContainsKey(name);
         }
 
     internal:

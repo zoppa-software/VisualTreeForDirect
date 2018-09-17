@@ -10,12 +10,12 @@
 #include "VisualResource.h"
 #include "VisualResourceEntity.h"
 
-using namespace System;
-using namespace System::Drawing;
-using namespace System::Collections::Generic;
-
 namespace VisualTree
 {
+    using namespace System;
+    using namespace System::Drawing;
+    using namespace System::Collections::Generic;
+
     /// <summary>放射グラデーションブラシインスタンス。</summary>
 	public ref class VisualResourceOfRadialGradientBrush sealed
         : public VisualResource

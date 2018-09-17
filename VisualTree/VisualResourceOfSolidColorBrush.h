@@ -7,11 +7,11 @@
 #include "VisualResource.h"
 #include "VisualResourceEntity.h"
 
-using namespace System;
-using namespace System::Drawing;
-
 namespace VisualTree
 {
+    using namespace System;
+    using namespace System::Drawing;
+
     /// <summary>単色ブラシリソース。</summary>
 	public ref class VisualResourceOfSolidColorBrush sealed
 		: public VisualResource

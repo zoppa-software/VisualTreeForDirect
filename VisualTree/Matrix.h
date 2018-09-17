@@ -76,6 +76,10 @@ namespace VisualTree
             return res;
         }
 
+        /// <summary>回転マトリクスを取得する。</summary>
+        /// <param name="angle">回転角度。</param>
+        /// <param name="center">中心位置。</param>
+        /// <return>マトリクス。</return>
         static Matrix Rotation(float angle, PointF center)
         {
             Matrix res;
@@ -90,6 +94,9 @@ namespace VisualTree
             return res;
         }
 
+        /// <summary>回転マトリクスを取得する。</summary>
+        /// <param name="angle">回転角度。</param>
+        /// <return>マトリクス。</return>
         static Matrix Rotation(float angle)
         {
             Matrix res;
@@ -103,6 +110,11 @@ namespace VisualTree
             return res;
         }
 
+        /// <summary>拡大・縮小マトリクスを取得する。</summary>
+        /// <param name="x">x拡大量。</param>
+        /// <param name="y">y拡大量。</param>
+        /// <param name="center">中心位置。</param>
+        /// <return>マトリクス。</return>
         static Matrix Scale(float x, float y, PointF center)
         {
             Matrix res;
@@ -116,6 +128,10 @@ namespace VisualTree
             return res;
         }
 
+        /// <summary>拡大・縮小マトリクスを取得する。</summary>
+        /// <param name="x">x拡大量。</param>
+        /// <param name="y">y拡大量。</param>
+        /// <return>マトリクス。</return>
         static Matrix Scale(float x, float y)
         {
             Matrix res;
@@ -129,6 +145,10 @@ namespace VisualTree
             return res;
         }
 
+        /// <summary>拡大・縮小マトリクスを取得する。</summary>
+        /// <param name="size">拡大量。</param>
+        /// <param name="center">中心位置。</param>
+        /// <return>マトリクス。</return>
         static Matrix Scale(SizeF size, PointF center)
         {
             Matrix res;
@@ -144,6 +164,9 @@ namespace VisualTree
             return res;
         }
 
+        /// <summary>拡大・縮小マトリクスを取得する。</summary>
+        /// <param name="size">拡大量。</param>
+        /// <return>マトリクス。</return>
         static Matrix Scale(SizeF size)
         {
             Matrix res;
@@ -158,6 +181,10 @@ namespace VisualTree
             return res;
         }
 
+        /// <summary>積演算子。</summary>
+        /// <param name="left">左辺。</param>
+        /// <param name="right">右辺。</param>
+        /// <return>マトリクス。</return>
         static Matrix operator*(Matrix left, Matrix right)
         {
             Matrix res;

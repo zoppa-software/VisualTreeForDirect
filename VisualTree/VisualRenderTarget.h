@@ -12,11 +12,11 @@
 #include "VisualResourceEntity.h"
 #include "VisualLayer.h"
 
-using namespace System;
-using namespace System::Drawing;
-
 namespace VisualTree
 {
+    using namespace System;
+    using namespace System::Drawing;
+
     /// <summary>描画対象インスタンス。</summary>
     public value struct VisualRenderTarget
     {

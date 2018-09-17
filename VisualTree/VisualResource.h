@@ -6,11 +6,11 @@
 #include <wincodec.h>
 #include "VisualResourceEntity.h"
 
-using namespace System;
-using namespace System::Drawing;
-
 namespace VisualTree
 {
+    using namespace System;
+    using namespace System::Drawing;
+
     ref class VisualResourceEntity;
 
     /// <summary>リソースクラス。</summary>

@@ -20,7 +20,7 @@ namespace VisualTree
         InitializeComponent();
 
         this->CreateDeviceIndependentResources();
-        this->srcres = gcnew List<VisualResource^>();
+        this->srcres = gcnew Dictionary<String ^, VisualResource^>();
         this->resources = gcnew VisualResources();
     }
 
@@ -58,7 +58,13 @@ namespace VisualTree
         }
     }
 
-    // ウィンドウプロシージャ
+    void VisualTeeControl::OnPaintBackground(PaintEventArgs ^ e)
+    {
+        if (this->resources->Count <= 0) {
+            Control::OnPaintBackground(e);
+        }
+    }
+
 	void VisualTeeControl::WndProc(Message% message)
 	{
         switch (message.Msg)
@@ -137,7 +143,8 @@ namespace VisualTree
 			if (!SUCCEEDED(hr)) { return hr; }
 
             // リソースを実体に変換
-			for each (VisualResource ^ res in this->srcres) {
+            this->resources->Clear();
+			for each (VisualResource ^ res in this->srcres->Values) {
 				this->resources->Add(res->Name, res->ChangeEntity(this->renderTarget));
 			}
 		}
@@ -216,12 +223,31 @@ namespace VisualTree
     }
 
     // 管理しているリソースを解放する
-    void VisualTeeControl::ClearResource() {
+    void VisualTeeControl::ClearResource()
+    {
         this->srcres->Clear();
         for each(VisualResourceEntity ^ ins in this->resources->Values) {
             ins->SafeRelease();
         }
         this->resources->Clear();
+    }
+
+    // レンダーターゲットを再構築する
+    void VisualTeeControl::Rebuild()
+    {
+        if (this->renderTarget != NULL) {
+            this->renderTarget->Release();
+            this->renderTarget = NULL;
+            this->Invalidate();
+        }
+    }
+
+    void VisualTeeControl::Remove(String ^ name)
+    {
+        if (this->srcres->ContainsKey(name)) {
+            delete this->srcres[name];
+            this->srcres->Remove(name);
+        }
     }
 
     //-------------------------------------------------------------------------
@@ -230,77 +256,77 @@ namespace VisualTree
     VisualResourceOfSolidColorBrush ^ VisualTeeControl::CreateSolidColorBrush(String ^ name, int red, int green, int blue, int alpha)
     {
         VisualResourceOfSolidColorBrush ^ res = gcnew VisualResourceOfSolidColorBrush(name, red, green, blue, alpha);
-        this->srcres->Add(res);
+        this->srcres->Add(res->Name, res);
         return res;
     }
 
     VisualResourceOfSolidColorBrush ^ VisualTeeControl::CreateSolidColorBrush(String ^ name, Color color)
     {
         VisualResourceOfSolidColorBrush ^ res = gcnew VisualResourceOfSolidColorBrush(name, color.R, color.G, color.B, color.A);
-        this->srcres->Add(res);
+        this->srcres->Add(res->Name, res);
         return res;
     }
 
     VisualResourceOfPathGeometry ^ VisualTeeControl::CreatePathGeometry(String ^ name)
     {
         VisualResourceOfPathGeometry ^ res = gcnew VisualResourceOfPathGeometry(name, this->factory);
-        this->srcres->Add(res);
+        this->srcres->Add(res->Name, res);
         return res;
     }
 
     VisualResourceOfBitmap ^ VisualTeeControl::CreateBitmap(String ^ name, Bitmap ^ bitmap)
     {
         VisualResourceOfBitmap ^ res = gcnew VisualResourceOfBitmap(name, bitmap);
-        this->srcres->Add(res);
+        this->srcres->Add(res->Name, res);
         return res;
     }
 
     VisualResourceOfBitmapBrush ^ VisualTeeControl::CreateBitmapBrush(String ^ name, Bitmap ^ bitmap)
     {
         VisualResourceOfBitmapBrush ^ res = gcnew VisualResourceOfBitmapBrush(name, bitmap);
-        this->srcres->Add(res);
+        this->srcres->Add(res->Name, res);
         return res;
     }
 
     VisualResourceOfLinearGradientBrush ^ VisualTeeControl::CreateLinearGradientBrush(String ^ name)
     {
         VisualResourceOfLinearGradientBrush ^ res = gcnew VisualResourceOfLinearGradientBrush(name);
-        this->srcres->Add(res);
+        this->srcres->Add(res->Name, res);
         return res;
     }
 
     VisualResourceOfRadialGradientBrush ^ VisualTeeControl::CreateRadialGradientBrush(String ^ name)
     {
         VisualResourceOfRadialGradientBrush ^ res = gcnew VisualResourceOfRadialGradientBrush(name);
-        this->srcres->Add(res);
+        this->srcres->Add(res->Name, res);
         return res;
     }
 
     VisualResourceOfTextFormat ^ VisualTeeControl::CreateTextFormat(String ^ name)
     {
         VisualResourceOfTextFormat ^ res = gcnew VisualResourceOfTextFormat(name, this->writeFactory);
-        this->srcres->Add(res);
+        this->srcres->Add(res->Name, res);
         return res;
     }
 
     VisualResourceOfStrokeStyle ^ VisualTeeControl::CreateStrokeStyle(String ^ name)
     {
         VisualResourceOfStrokeStyle ^ res = gcnew VisualResourceOfStrokeStyle(name, this->factory);
-        this->srcres->Add(res);
+        this->srcres->Add(res->Name, res);
         return res;
     }
 
     VisualResourceOfRectangleGeometry ^ VisualTeeControl::CreateRectangleGeometry(String ^ name, RectangleF rectangle)
     {
         VisualResourceOfRectangleGeometry ^ res = gcnew VisualResourceOfRectangleGeometry(name, this->factory, rectangle);
-        this->srcres->Add(res);
+        this->srcres->Add(res->Name, res);
         return res;
     }
 
     VisualResourceOfTransformedGeometry ^ VisualTeeControl::CreateTransformedGeometry(String ^ name, VisualResourceOfPathGeometry ^ pathGeometry, Matrix matrix)
     {
         VisualResourceOfTransformedGeometry ^ res = gcnew VisualResourceOfTransformedGeometry(name, this->factory, pathGeometry, matrix);
-        this->srcres->Add(res);
+        this->srcres->Add(res->Name, res);
         return res;
     }
 }
